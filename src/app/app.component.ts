@@ -7,7 +7,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   standalone: true,
   imports: [RouterOutlet, MatSlideToggleModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'Libreria';
