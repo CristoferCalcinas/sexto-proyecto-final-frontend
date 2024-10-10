@@ -13,6 +13,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -20,12 +21,13 @@ import {
   standalone: true,
   imports: [
     AuthLayoutComponent,
+    FormsModule,
     MatButtonModule,
     MatCardModule,
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styles: ``,
