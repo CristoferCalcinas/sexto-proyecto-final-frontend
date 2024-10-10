@@ -13,8 +13,10 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+
+
 @Component({
-  selector: 'app-login',
+  selector: 'view-login',
   standalone: true,
   imports: [
     AuthLayoutComponent,
