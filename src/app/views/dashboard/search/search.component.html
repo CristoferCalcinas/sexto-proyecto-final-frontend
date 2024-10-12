@@ -1,1 +1,46 @@
-<p>search works!</p>
+<form class="min-w-[150px] max-w-[500px] w-full">
+  <mat-form-field class="w-full">
+    <mat-label>Number</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Number"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      @for (option of filteredOptions | async; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<div
+  class="w-full grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+>
+  @defer(on timer(2000)) { @for (item of itemsSearch; track $index){
+
+  <div
+    class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center"
+  >
+    <!-- <components-product-card [product]="item" /> -->
+    Productos encontrados
+  </div>
+  } @empty{
+
+  <div class="flex justify-center">
+    <p>No se encontraron productos</p>
+  </div>
+  } } @placeholder {
+  <div
+    class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+  >
+    @for (i of [1, 2, 3, 4]; track $index) {
+
+    <div class="animate-pulse bg-gray-200 h-64 w-full rounded-md"></div>
+    }
+  </div>
+  }
+</div>
