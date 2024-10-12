@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthLayoutComponent } from '../../../shared/layouts/auth-layout/auth-layout.component';
+import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';

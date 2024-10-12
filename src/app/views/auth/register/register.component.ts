@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthLayoutComponent } from '../../../shared/layouts/auth-layout/auth-layout.component';
+import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -14,7 +14,6 @@ import { ErrorStateMatcher } from '@angular/material/core';
     AuthLayoutComponent,
     MatFormFieldModule,
     FormsModule,
-    AuthLayoutComponent,
     MatButtonModule,
     MatCardModule,
     FormsModule,
