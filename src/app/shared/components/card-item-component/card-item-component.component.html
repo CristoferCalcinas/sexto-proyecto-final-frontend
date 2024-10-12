@@ -1,4 +1,4 @@
-<mat-card class="example-card" appearance="outlined">
+<mat-card class="pb-4 lg:pb-0" appearance="outlined">
   <mat-card-header>
     <div class="flex items-center justify-center space-x-5 w-full">
       <img
@@ -27,7 +27,7 @@
           </button>
         </div>
 
-        <span class="font-bold text-4xl tracking-widest p-5"> 0 </span>
+        <span class="font-bold text-4xl tracking-widest p-2 md:p-5"> 0 </span>
 
         <div class="flex justify-center">
           <button
@@ -41,7 +41,9 @@
       </div>
     </div>
   </mat-card-header>
-  <mat-card-content>
-    {{ longText }}
-  </mat-card-content>
+  <div class="hidden lg:block">
+    <mat-card-content>
+      {{ longText }}
+    </mat-card-content>
+  </div>
 </mat-card>
