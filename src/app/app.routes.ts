@@ -6,16 +6,62 @@ export const routes: Routes = [
     loadComponent: () => import('./views/dashboard/dashboard.component'),
     children: [
       {
-        path: 'products-list',
-        title: 'Lista de Productos',
+        path: 'favorites',
+        title: 'Productos Favoritos',
         loadComponent: () =>
-          import('./views/dashboard/products-list/products-list.component'),
+          import('./views/dashboard/favorites/favorites.component'),
       },
       {
         path: 'product/:id',
         title: 'Producto',
         loadComponent: () =>
           import('./views/dashboard/product/product.component'),
+      },
+      {
+        path: 'products-list',
+        title: 'Lista de Productos',
+        loadComponent: () =>
+          import('./views/dashboard/products-list/products-list.component'),
+      },
+      {
+        path: 'products-on-sale',
+        title: 'Productos en Oferta',
+        loadComponent: () =>
+          import(
+            './views/dashboard/products-on-sale/products-on-sale.component'
+          ),
+      },
+      {
+        path: 'purchase-history',
+        title: 'Historial de Compras',
+        loadComponent: () =>
+          import(
+            './views/dashboard/purchase-history/purchase-history.component'
+          ),
+      },
+      {
+        path: 'search',
+        title: 'Buscar Producto',
+        loadComponent: () =>
+          import('./views/dashboard/search/search.component'),
+      },
+      {
+        path: 'shopping-cart',
+        title: 'Carrito de Compras',
+        loadComponent: () =>
+          import('./views/dashboard/shopping-cart/shopping-cart.component'),
+      },
+      {
+        path: 'support',
+        title: 'Soporte Técnico',
+        loadComponent: () =>
+          import('./views/dashboard/support/support.component'),
+      },
+      {
+        path: 'user-profile',
+        title: 'Perfil del Usuario',
+        loadComponent: () =>
+          import('./views/dashboard/user-profile/user-profile.component'),
       },
       {
         path: '',
