@@ -12,7 +12,7 @@ export const routes: Routes = [
           import('./views/dashboard/products-list/products-list.component'),
       },
       {
-        path: 'product',
+        path: 'product/:id',
         title: 'Producto',
         loadComponent: () =>
           import('./views/dashboard/product/product.component'),
