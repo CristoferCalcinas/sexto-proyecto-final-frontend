@@ -1,0 +1,47 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div class="flex items-center justify-center space-x-5 w-full">
+      <img
+        mat-card-sm-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      />
+
+      <mat-card-title-group>
+        <mat-card-title>
+          <span class="font-bold text-2xl tracking-widest">
+            Cuaderno espiral
+          </span>
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ "3.99" | currency : "USD" : true : "1.2-2" }}
+        </mat-card-subtitle>
+      </mat-card-title-group>
+
+      <div class="flex justify-center items-center pr-5">
+        <div class="flex justify-center">
+          <button
+            mat-mini-fab
+            aria-label="Example icon button with a menu icon"
+          >
+            <mat-icon> add_circle </mat-icon>
+          </button>
+        </div>
+
+        <span class="font-bold text-4xl tracking-widest p-5"> 0 </span>
+
+        <div class="flex justify-center">
+          <button
+            mat-mini-fab
+            disabled
+            aria-label="Example icon button with a home icon"
+          >
+            <mat-icon>do_not_disturb_on</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    {{ longText }}
+  </mat-card-content>
+</mat-card>
