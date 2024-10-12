@@ -24,7 +24,9 @@
     </button>
     <span class="flex-1"></span>
 
-    <button mat-stroked-button>Logout</button>
+    <button mat-stroked-button [routerLink]="['/auth/login']">
+      Cerrar sesión
+    </button>
   </mat-toolbar>
 
   <div class="container p-2">

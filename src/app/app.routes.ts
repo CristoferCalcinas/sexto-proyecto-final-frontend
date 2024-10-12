@@ -12,6 +12,12 @@ export const routes: Routes = [
           import('./views/dashboard/products-list/products-list.component'),
       },
       {
+        path: 'product',
+        title: 'Producto',
+        loadComponent: () =>
+          import('./views/dashboard/product/product.component'),
+      },
+      {
         path: '',
         redirectTo: 'products-list',
         pathMatch: 'full',

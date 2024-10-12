@@ -22,19 +22,77 @@ import { RouterModule } from '@angular/router';
 export class DashboardLayoutComponent {
   public sidebarItems = [
     {
-      label: 'Listado',
+      label: 'Listado de Productos',
       icon: 'label',
-      url: './list',
+      url: './products-list',
     },
     {
-      label: 'Añadir',
-      icon: 'add',
-      url: './new-hero',
-    },
-    {
-      label: 'Buscar',
+      label: 'Buscar Producto',
       icon: 'search',
       url: './search',
     },
+    {
+      label: 'Productos en Oferta',
+      icon: 'local_offer',
+      url: './products-on-sale',
+    },
+    {
+      label: 'Perfil del Usuario',
+      icon: 'person',
+      url: './user-profile',
+    },
+    {
+      label: 'Historial de Compras',
+      icon: 'history',
+      url: './purchase-history',
+    },
+    {
+      label: 'Carrito de Compras',
+      icon: 'shopping_cart',
+      url: './shopping-cart',
+    },
+    {
+      label: 'Favoritos',
+      icon: 'favorite',
+      url: './favorites',
+    },
+    {
+      label: 'Soporte',
+      icon: 'support',
+      url: './support',
+    },
+  ];
+
+  public sidebarItemsAdmin = [
+    {
+      label: 'Listado de Productos',
+      icon: 'label',
+      url: './admin-products-list',
+    },
+    {
+      label: 'Añadir Producto',
+      icon: 'add',
+      url: './admin-add-product',
+    },
+    {
+      label: 'Buscar Producto',
+      icon: 'search',
+      url: './admin-search',
+    },
+    {
+      label: 'Gestión de Usuarios',
+      icon: 'people',
+      url: './admin-user-management',
+    },
+    {
+      label: 'Reportes',
+      icon: 'bar_chart',
+      url: './admin-reports',
+    },
+    // {
+    //   label: 'Configuración',
+    //   icon: 'settings',
+    //   url: './admin-settings',
+    // },
   ];
 }
