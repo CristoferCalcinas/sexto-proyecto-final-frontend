@@ -32,7 +32,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styles: ``,
 })
-export class LoginComponent {
+export default class LoginComponent {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,

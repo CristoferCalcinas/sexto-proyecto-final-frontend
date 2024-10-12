@@ -19,6 +19,14 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'auth/login',
+    loadComponent: () => import('./views/auth/login/login.component'),
+  },
+  {
+    path: 'auth/register',
+    loadComponent: () => import('./views/auth/register/register.component'),
+  },
+  {
     path: '**',
     redirectTo: 'dashboard',
     pathMatch: 'full',

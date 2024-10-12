@@ -25,7 +25,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
   templateUrl: './register.component.html',
   styles: ``,
 })
-export class RegisterComponent {
+export default class RegisterComponent {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
