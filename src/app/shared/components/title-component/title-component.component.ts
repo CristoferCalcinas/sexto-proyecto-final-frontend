@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-    <h1 class="uppercase font-bold text-4xl antialiased">{{ title() }}</h1>
+    <h1 class="uppercase font-bold text-4xl antialiased mt-3 mb-8">{{ title() }}</h1>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
