@@ -1,0 +1,27 @@
+<mat-card class="max-w-[400px]" appearance="outlined">
+  <mat-card-header>
+    <div mat-card-avatar (click)="deleteFavorite()">
+      <mat-icon class="mt-1 scale-150">delete</mat-icon>
+    </div>
+    <div class="px-5 pt-1">
+      <mat-card-title>Shiba Inu</mat-card-title>
+    </div>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+    alt="Photo of a Shiba Inu"
+  />
+  <mat-card-content>
+    <div class="flex flex-col space-y-5 py-5">
+      <span> Cuaderno Premium </span>
+
+      <span> Papelería </span>
+
+      <span> $12.99 </span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button class="w-full mb-3 mx-2">Basic</button>
+  </mat-card-actions>
+</mat-card>
