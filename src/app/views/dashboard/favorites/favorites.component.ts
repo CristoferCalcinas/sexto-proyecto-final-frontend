@@ -7,6 +7,7 @@ import { TitleComponent } from '@shared/components/title-component/title-compone
 import { FavoriteCardComponentComponent } from '@shared/components/favorite-card-component/favorite-card-component.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { EmptyComponent } from "./ui/empty.component";
 
 @Component({
   selector: 'app-favorites',
@@ -19,13 +20,15 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     ReactiveFormsModule,
     TitleComponent,
-  ],
+    EmptyComponent
+],
   templateUrl: './favorites.component.html',
   styles: ``,
 })
 export default class FavoritesComponent implements OnInit {
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
+  // options: string[] = [];
   filteredOptions: Observable<string[]> = new Observable<string[]>();
 
   ngOnInit() {

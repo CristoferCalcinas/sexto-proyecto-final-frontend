@@ -1,5 +1,8 @@
 <shared-title-component title="Tus favoritos" />
 
+@if (!options.length) {
+<empty-component />
+}@else {
 <form class="w-full flex justify-center">
   <mat-form-field class="w-4/5">
     <mat-label>Number</mat-label>
@@ -19,8 +22,9 @@
   </mat-form-field>
 </form>
 
-<shared-favorite-card-component />
-<shared-favorite-card-component />
-<shared-favorite-card-component />
-<shared-favorite-card-component />
-<shared-favorite-card-component />
+<div class="flex flex-wrap justify-center items-center gap-10 mt-3">
+  @for (option of options; track $index) {
+  <shared-favorite-card-component />
+  }
+</div>
+}
