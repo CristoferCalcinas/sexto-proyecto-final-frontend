@@ -1,23 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleComponentComponent } from '@shared/components/title-component/title-component.component';
-import { FavoriteCardComponentComponent } from '../../../shared/components/favorite-card-component/favorite-card-component.component';
-import {
-  MatFormField,
-  MatFormFieldModule,
-  MatLabel,
-} from '@angular/material/form-field';
-import {
-  MatAutocomplete,
-  MatAutocompleteModule,
-  MatOption,
-} from '@angular/material/autocomplete';
+import { AsyncPipe } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+
+import { TitleComponentComponent } from '@shared/components/title-component/title-component.component';
+import { FavoriteCardComponentComponent } from '@shared/components/favorite-card-component/favorite-card-component.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import { MatIcon } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-favorites',
