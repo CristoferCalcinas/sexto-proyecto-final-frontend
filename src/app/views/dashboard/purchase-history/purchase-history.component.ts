@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
-import { TitleComponentComponent } from '@shared/components/title-component/title-component.component';
+import { TitleComponent } from '@shared/components/title-component/title-component.component';
 
 export interface Transaction {
   item: string;
@@ -11,7 +11,7 @@ export interface Transaction {
 @Component({
   selector: 'app-purchase-history',
   standalone: true,
-  imports: [MatTableModule, CurrencyPipe, TitleComponentComponent],
+  imports: [MatTableModule, CurrencyPipe, TitleComponent],
   templateUrl: './purchase-history.component.html',
   styles: ``,
 })

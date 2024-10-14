@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TitleComponentComponent {
+export class TitleComponent {
 
   public title = input.required<string>();
 

@@ -6,7 +6,7 @@ import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { TitleComponentComponent } from "../../../shared/components/title-component/title-component.component";
+import { TitleComponent } from '@shared/components/title-component/title-component.component';
 
 @Component({
   selector: 'app-search',
@@ -18,8 +18,8 @@ import { TitleComponentComponent } from "../../../shared/components/title-compon
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    TitleComponentComponent
-],
+    TitleComponent,
+  ],
   templateUrl: './search.component.html',
   styles: ``,
 })

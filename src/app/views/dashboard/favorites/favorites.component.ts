@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 
-import { TitleComponentComponent } from '@shared/components/title-component/title-component.component';
+import { TitleComponent } from '@shared/components/title-component/title-component.component';
 import { FavoriteCardComponentComponent } from '@shared/components/favorite-card-component/favorite-card-component.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -18,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
     MatAutocompleteModule,
     MatInputModule,
     ReactiveFormsModule,
-    TitleComponentComponent,
+    TitleComponent,
   ],
   templateUrl: './favorites.component.html',
   styles: ``,
