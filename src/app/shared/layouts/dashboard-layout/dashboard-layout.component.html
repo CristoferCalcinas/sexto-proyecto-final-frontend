@@ -19,9 +19,12 @@
   </mat-sidenav>
 
   <mat-toolbar color="primary">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+    <div class="fixed z-50">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon class="scale-150">menu</mat-icon>
+      </button>
+    </div>
+
     <span class="flex-1"></span>
 
     <button mat-stroked-button [routerLink]="['/auth/login']">
