@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
@@ -8,6 +8,7 @@ import { FavoriteCardComponentComponent } from '@shared/components/favorite-card
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { EmptyComponent } from "./ui/empty.component";
+import { FavoriteService } from '../../../services/favorite.service';
 
 @Component({
   selector: 'app-favorites',
@@ -27,7 +28,7 @@ import { EmptyComponent } from "./ui/empty.component";
 })
 export default class FavoritesComponent implements OnInit {
   myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
+  options: string[] = inject(FavoriteService).wishList;
   // options: string[] = [];
   filteredOptions: Observable<string[]> = new Observable<string[]>();
 
