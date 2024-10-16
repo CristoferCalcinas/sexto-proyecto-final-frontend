@@ -1,5 +1,4 @@
-<shared-title-component title="Buscar entre todos nuestros productos"/>
-
+<shared-title-component title="Buscar entre todos nuestros productos" />
 
 <form class="min-w-[150px] max-w-[500px] w-full">
   <mat-form-field class="w-full">
@@ -21,7 +20,7 @@
 </form>
 
 <div
-  class="w-full grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+  class="w-full grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-content-center"
 >
   @defer(on timer(2000)) { @for (item of itemsSearch; track $index){
 
@@ -36,14 +35,9 @@
   <div class="flex justify-center">
     <p>No se encontraron productos</p>
   </div>
-  } } @placeholder {
-  <div
-    class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-  >
-    @for (i of [1, 2, 3, 4]; track $index) {
+  } } @placeholder { @for (i of [1, 2, 3, 4]; track $index) {
 
-    <div class="animate-pulse bg-gray-200 h-64 w-full rounded-md"></div>
-    }
-  </div>
-  }
+  <div class="col-span-4 sm:col-span-3 lg:col-span-2 xl:col-span-1 animate-pulse bg-gray-200 h-64 w-full rounded-md"></div>
+
+  } }
 </div>
