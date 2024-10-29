@@ -11,12 +11,16 @@
             alt=""
           />
 
-          <h3 class="mt-5 text-2xl font-bold">Maria Garcia</h3>
+          <h3 class="mt-5 text-2xl font-bold">
+            {{ userProfile?.nombreCliente }}
+          </h3>
 
-          <span>maria.garcia&#64;ejemplo.com</span>
+          <span>
+            {{ userProfile?.correoElectronico }}
+          </span>
         </div>
 
-        <div class="w-full mt-10 flex flex-col space-y-5">
+        <div class="w-full mt-5 flex flex-col space-y-5">
           <button
             type="button"
             class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -58,6 +62,15 @@
           >
             Preferencias
           </button>
+        </div>
+      </div>
+
+      <div class="px-4 py-5 sm:p-6">
+        <div class="flex items-center justify-center">
+          <span class="italic"> Fecha de Registro: </span>
+          <h4 class="font-normal tracking-wider text-lg px-4">
+            {{ userProfile?.fechaRegistro }}
+          </h4>
         </div>
       </div>
     </div>
