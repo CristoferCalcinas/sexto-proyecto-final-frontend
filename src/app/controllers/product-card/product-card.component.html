@@ -1,16 +1,28 @@
 <!-- class="max-w-[400px]" -->
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title>Chihuahua</mat-card-title>
+    <mat-card-title>{{ product().nombreProducto }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p>{{ longText }}</p>
+    <div>
+      <h3>
+        Cantidad en Stock:
+        <span class="font-bold text-xl antialiased italic">
+          {{ product().cantidadStock }}
+        </span>
+      </h3>
+    </div>
+    <p>{{ product().descripcion }}</p>
   </mat-card-content>
   <mat-card-footer class="p-4">
     <mat-chip-set aria-label="Chihuahua traits">
-      <mat-chip>charming</mat-chip>
-      <mat-chip>graceful</mat-chip>
-      <mat-chip>sassy</mat-chip>
+      <mat-chip>Categoria ID: {{ product().categoriaId }}</mat-chip>
     </mat-chip-set>
+    <div class="mt-5">
+      Precio:
+      <span>
+        {{ product().precio }}
+      </span>
+    </div>
   </mat-card-footer>
 </mat-card>
