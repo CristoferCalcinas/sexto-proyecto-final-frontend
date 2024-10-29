@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
 import { TitleComponent } from '@shared/components/title-component/title-component.component';
-import { ProductsService } from '../../../services/products.service';
+import { ProductsService } from '../../../services/products-list.service';
 
 @Component({
   selector: 'app-products-list',
