@@ -9,11 +9,14 @@
       <mat-card-title-group>
         <mat-card-title>
           <span class="font-bold text-2xl tracking-widest">
-            Cuaderno espiral
+            {{ detalle().producto.nombreProducto }}
           </span>
         </mat-card-title>
         <mat-card-subtitle>
-          {{ "3.99" | currency : "USD" : true : "1.2-2" }}
+          {{
+            detalle().precioUnitario * detalle().cantidad
+              | currency : "USD" : true : "1.2-2"
+          }}
         </mat-card-subtitle>
       </mat-card-title-group>
 
@@ -27,7 +30,9 @@
           </button>
         </div>
 
-        <span class="font-bold text-4xl tracking-widest p-2 md:p-5"> 0 </span>
+        <span class="font-bold text-4xl tracking-widest p-2 md:p-5">
+          {{ detalle().cantidad }}
+        </span>
 
         <div class="flex justify-center">
           <button
@@ -43,7 +48,7 @@
   </mat-card-header>
   <div class="hidden lg:block">
     <mat-card-content>
-      {{ longText }}
+      {{ detalle().producto.descripcion }}
     </mat-card-content>
   </div>
 </mat-card>
