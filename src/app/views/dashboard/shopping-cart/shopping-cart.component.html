@@ -1,13 +1,15 @@
 <shared-title-component title="Carrito de compras" />
 
 <div class="space-x-10">
-  <shared-card-item-component />
-  <shared-card-item-component />
-  <shared-card-item-component />
-  <shared-card-item-component />
-  <shared-card-item-component />
+  @for (detalle of detalles; track $index) {
+  <shared-card-item-component [detalle]="detalle" />
+  }@empty {
+  <div class="text-center">
+    <p>No hay productos en el carrito</p>
+  </div>
+  }
 </div>
 
 <div class="my-5">
-  <shared-card-summary-component />
+  <shared-card-summary-component [total]="calcularTotal" />
 </div>
