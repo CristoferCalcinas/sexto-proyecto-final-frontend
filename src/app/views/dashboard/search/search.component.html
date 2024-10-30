@@ -1,12 +1,12 @@
 <shared-title-component title="Buscar entre todos nuestros productos" />
 
-<form class="min-w-[150px] max-w-[500px] w-full">
-  <mat-form-field class="w-full">
-    <mat-label>Number</mat-label>
+<form class="flex items-center justify-center w-full px-4 mb-5">
+  <mat-form-field class="w-full max-w-[500px]">
+    <mat-label>Buscar entre todos los productos</mat-label>
     <input
       type="text"
-      placeholder="Pick one"
-      aria-label="Number"
+      placeholder="Ingresa el nombre del producto"
+      aria-label="Buscar entre todos los productos"
       matInput
       [formControl]="myControl"
       [matAutocomplete]="auto"
@@ -30,14 +30,18 @@
     <!-- <components-product-card [product]="item" /> -->
     Productos encontrados
   </div>
+
   } @empty{
 
   <div class="flex justify-center">
     <p>No se encontraron productos</p>
   </div>
+
   } } @placeholder { @for (i of [1, 2, 3, 4]; track $index) {
 
-  <div class="col-span-4 sm:col-span-3 lg:col-span-2 xl:col-span-1 animate-pulse bg-gray-200 h-64 w-full rounded-md"></div>
+  <div
+    class="col-span-4 sm:col-span-3 lg:col-span-2 xl:col-span-1 animate-pulse bg-gray-200 h-64 w-full rounded-md"
+  ></div>
 
   } }
 </div>
