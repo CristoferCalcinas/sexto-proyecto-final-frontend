@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -10,5 +10,5 @@ import { MatButtonModule } from '@angular/material/button';
   styles: ``,
 })
 export class CardSummaryComponentComponent {
-  public total: number = 3.99;
+  public total: any = input.required();
 }
