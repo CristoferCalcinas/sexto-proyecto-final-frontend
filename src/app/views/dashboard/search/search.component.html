@@ -1,47 +1,49 @@
 <shared-title-component title="Buscar entre todos nuestros productos" />
 
+<!-- Formulario de búsqueda -->
 <form class="flex items-center justify-center w-full px-4 mb-5">
   <mat-form-field class="w-full max-w-[500px]">
     <mat-label>Buscar entre todos los productos</mat-label>
     <input
       type="text"
+      matInput
+      [formControl]="searchControl"
+      [matAutocomplete]="auto"
       placeholder="Ingresa el nombre del producto"
       aria-label="Buscar entre todos los productos"
-      matInput
-      [formControl]="myControl"
-      [matAutocomplete]="auto"
+      (input)="onSearchInput()"
     />
     <mat-autocomplete #auto="matAutocomplete">
-      @for (option of filteredOptions | async; track option) {
-      <mat-option [value]="option">{{ option }}</mat-option>
+      @for (option of filteredOptions$ | async; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>
 </form>
 
-<div
-  class="w-full grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-content-center"
->
-  @defer(on timer(2000)) { @for (item of itemsSearch; track $index){
-
-  <div
-    class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center"
-  >
-    <!-- <components-product-card [product]="item" /> -->
-    Productos encontrados
-  </div>
-
-  } @empty{
-
-  <div class="flex justify-center">
-    <p>No se encontraron productos</p>
-  </div>
-
-  } } @placeholder { @for (i of [1, 2, 3, 4]; track $index) {
-
-  <div
-    class="col-span-4 sm:col-span-3 lg:col-span-2 xl:col-span-1 animate-pulse bg-gray-200 h-64 w-full rounded-md"
-  ></div>
-
-  } }
+<!-- Contenedor de resultados -->
+<div class="container mx-auto px-4 py-8">
+  @defer (when searchResults$ | async; prefetch on timer(2000)) {
+    @if ((searchResults$ | async)?.length) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        @for (product of searchResults$ | async; track product.id) {
+          <div class="w-full">
+            <components-product-card [product]="product" />
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="flex justify-center items-center min-h-[200px]">
+        <p class="text-gray-500 text-lg">No se encontraron productos</p>
+      </div>
+    }
+  } @placeholder {
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      @for (placeholder of placeholders; track placeholder) {
+        <div class="w-full">
+          <div class="animate-pulse bg-gray-200 h-64 rounded-lg shadow-sm"></div>
+        </div>
+      }
+    </div>
+  }
 </div>

@@ -1,12 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { Observable, BehaviorSubject } from 'rxjs';
+import {
+  map,
+  startWith,
+  debounceTime,
+  distinctUntilChanged,
+  catchError,
+} from 'rxjs/operators';
+
 import { TitleComponent } from '@shared/components/title-component/title-component.component';
+import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
+import { ProductsService } from '../../../services/products-list.service';
 
 @Component({
   selector: 'app-search',
@@ -19,30 +28,70 @@ import { TitleComponent } from '@shared/components/title-component/title-compone
     ReactiveFormsModule,
     AsyncPipe,
     TitleComponent,
+    ProductCardComponent,
   ],
   templateUrl: './search.component.html',
   styles: ``,
 })
 export default class SearchComponent implements OnInit {
-  myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]> = new Observable<string[]>();
+  private productsService = inject(ProductsService);
+  readonly searchControl = new FormControl('');
 
-  // Lista de posibles elementos para ser renderizados con las cards
-  public itemsSearch = [];
+  filteredOptions$: Observable<string[]> = new Observable<string[]>();
+  searchResults$ = new BehaviorSubject<any[]>([]);
 
-  ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+  readonly placeholders = Array(4).fill(null);
+
+  private productNames: string[] = [];
+
+  ngOnInit(): void {
+    this.initializeProductNames();
+    this.initializeAutocomplete();
+    this.initializeSearch();
+  }
+
+  private initializeProductNames(): void {
+    this.productsService
+      .getAllProducts()
+      .pipe(
+        map((products) => products.map((product) => product.nombreProducto)),
+        catchError(() => [])
+      )
+      .subscribe((productNames) => {
+        this.productNames = productNames;
+      });
+  }
+
+  private initializeAutocomplete(): void {
+    this.filteredOptions$ = this.searchControl.valueChanges.pipe(
       startWith(''),
-      map((value) => this._filter(value || ''))
+      map((value) => this.filterOptions(value || ''))
     );
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  private initializeSearch(): void {
+    this.searchControl.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe(() => this.onSearchInput());
+  }
 
-    return this.options.filter((option) =>
+  private filterOptions(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.productNames.filter((option) =>
       option.toLowerCase().includes(filterValue)
     );
+  }
+
+  onSearchInput(): void {
+    const searchTerm = this.searchControl.value;
+    if (!searchTerm?.trim()) {
+      this.searchResults$.next([]);
+      return;
+    }
+
+    this.productsService.getProductsByName(searchTerm).subscribe({
+      next: (products) => this.searchResults$.next(products),
+      error: () => this.searchResults$.next([]),
+    });
   }
 }
