@@ -1,4 +1,4 @@
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" class="h-full justify-between">
   <mat-card-header>
     <div class="flex items-center justify-center space-x-5 w-full">
       <img
@@ -8,19 +8,24 @@
 
       <mat-card-title-group>
         <mat-card-title>
-          <span class="font-bold text-2xl tracking-widest">
+          <span class="font-bold tracking-widest text-lg md:text-2xl">
             {{ detalle().producto.nombreProducto }}
           </span>
         </mat-card-title>
         <mat-card-subtitle>
+          <span>SubTotal:</span>
           {{
             detalle().precioUnitario * detalle().cantidad
               | currency : "USD" : "symbol" : "1.2-2"
           }}
         </mat-card-subtitle>
+        <mat-card-subtitle>
+          <span>Unid:</span>
+          {{ detalle().precioUnitario | currency : "USD" : "symbol" : "1.2-2" }}
+        </mat-card-subtitle>
       </mat-card-title-group>
 
-      <div class="flex justify-center items-center pr-5">
+      <div class="flex justify-center items-center pr-0 md:pr-5">
         <div class="flex justify-center">
           <button
             mat-mini-fab
@@ -56,6 +61,13 @@
     </mat-card-content>
   </div>
   <mat-card-footer>
-    <button mat-raised-button color="primary" class="w-full" (click)="onDeleteItem()">Eliminar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      class="w-full"
+      (click)="onDeleteItem()"
+    >
+      Eliminar
+    </button>
   </mat-card-footer>
 </mat-card>
