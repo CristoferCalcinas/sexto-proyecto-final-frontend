@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, of } from 'rxjs';
+import { environments } from '../../environments/environments';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  private readonly API_URL = 'http://localhost:5210/api';
+  private readonly API_URL = environments.baseUrl;
   private http = inject(HttpClient);
 
   getAllProducts() {
