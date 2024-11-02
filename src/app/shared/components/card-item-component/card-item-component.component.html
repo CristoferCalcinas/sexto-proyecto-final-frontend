@@ -25,6 +25,8 @@
           <button
             mat-mini-fab
             aria-label="Example icon button with a menu icon"
+            [disabled]="detalle().cantidad >= 5"
+            (click)="changeQuantity(1)"
           >
             <mat-icon> add_circle </mat-icon>
           </button>
@@ -39,6 +41,8 @@
             mat-mini-fab
             disabled
             aria-label="Example icon button with a home icon"
+            [disabled]="detalle().cantidad <= 1"
+            (click)="changeQuantity(-1)"
           >
             <mat-icon>do_not_disturb_on</mat-icon>
           </button>
