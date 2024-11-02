@@ -39,6 +39,6 @@ export default class ProductsOnSaleComponent implements OnInit {
       groups.push(this.promotions.slice(i, i + 4));
     }
 
-    return [];
+    return groups;
   }
 }
