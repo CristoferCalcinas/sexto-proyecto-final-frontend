@@ -1,4 +1,4 @@
-<mat-card class="pb-4 lg:pb-0" appearance="outlined">
+<mat-card appearance="outlined">
   <mat-card-header>
     <div class="flex items-center justify-center space-x-5 w-full">
       <img
@@ -55,4 +55,7 @@
       {{ detalle().producto.descripcion }}
     </mat-card-content>
   </div>
+  <mat-card-footer>
+    <button mat-raised-button color="primary" class="w-full" (click)="onDeleteItem()">Eliminar</button>
+  </mat-card-footer>
 </mat-card>

@@ -27,4 +27,9 @@ export class CardItemComponentComponent {
       })
       .subscribe();
   }
+
+  onDeleteItem() {
+    console.log('onDeleteItem', this.detalle().id);
+    // this.detalleCarritoService.deleteDetalleCarrito(this.detalle().id).subscribe();
+  }
 }
