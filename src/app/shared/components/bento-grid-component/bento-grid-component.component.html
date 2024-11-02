@@ -12,11 +12,16 @@
           <p
             class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center"
           >
-            Mobile friendly
+            {{ getItemDetails(0)?.item_1?.nombrePromocion }}
           </p>
           <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-            lorem cupidatat commodo.
+            {{ getItemDetails(0)?.item_1?.descripcion }}
+
+            {{
+              getItemDetails(1)?.item_1
+                ? "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+                : "hidden"
+            }}
           </p>
         </div>
         <div
@@ -39,7 +44,11 @@
     </div>
 
     <!-- Elemento del medio superior -->
-    <div class="relative max-lg:row-start-1">
+    <div
+      [class]="
+        getItemDetails(1)?.item_2 ? 'relative max-lg:row-start-1' : 'hidden'
+      "
+    >
       <div
         class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem]"
       ></div>
@@ -50,11 +59,10 @@
           <p
             class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center"
           >
-            Performance
+            {{ getItemDetails(1)?.item_2?.nombrePromocion }}
           </p>
           <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit maiores
-            impedit.
+            {{ getItemDetails(1)?.item_2?.descripcion }}
           </p>
         </div>
         <div
@@ -73,7 +81,13 @@
     </div>
 
     <!-- Elemento del medio inferior -->
-    <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
+    <div
+      [class]="
+        getItemDetails(2)?.item_3
+          ? 'relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2'
+          : 'hidden'
+      "
+    >
       <div class="absolute inset-px rounded-lg bg-white"></div>
       <div
         class="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)]"
@@ -82,11 +96,10 @@
           <p
             class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center"
           >
-            Security
+            {{ getItemDetails(2)?.item_3?.nombrePromocion }}
           </p>
           <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-            Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse
-            semper morbi.
+            {{ getItemDetails(2)?.item_3?.descripcion }}
           </p>
         </div>
         <div
@@ -105,7 +118,9 @@
     </div>
 
     <!-- Elemento de la izquierda -->
-    <div class="relative lg:row-span-2">
+    <div
+      [class]="getItemDetails(3)?.item_4 ? 'relative lg:row-span-2' : 'hidden'"
+    >
       <div
         class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-r-[2rem]"
       ></div>
@@ -116,11 +131,10 @@
           <p
             class="mt-2 text-lg/7 font-medium tracking-tight text-gray-950 max-lg:text-center"
           >
-            Powerful APIs
+            {{ getItemDetails(3)?.item_4?.nombrePromocion }}
           </p>
           <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-            Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget
-            sem sodales gravida.
+            {{ getItemDetails(3)?.item_4?.descripcion }}
           </p>
         </div>
         <div class="relative min-h-[30rem] w-full grow">

@@ -1,8 +1,43 @@
+@if (getPromotionGroups().length) {
+
 <shared-title-component title="Productos en oferta" />
 
 <div class="">
-  <shared-bento-grid-component />
-  <shared-bento-grid-component />
+  @for (promo of getPromotionGroups(); track $index) {
+  <shared-bento-grid-component [promotions]="promo" />
+  }
 </div>
 
+}@else {
 
+<shared-title-component title="No tenemos productos en oferta" />
+
+<div class="bg-transparent">
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="mx-auto max-w-2xl py-24 sm:py-40 lg:py-48">
+      <div class="text-center">
+        <h1
+          class="text-balance text-5xl font-semibold tracking-tight text-gray-200 sm:text-7xl"
+        >
+          Actualmente no hay productos en ofertas
+        </h1>
+        <p
+          class="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8"
+        >
+          Le recomendamos que visite nuestra tienda para ver los productos y
+          encontrar el que más le guste.
+        </p>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <a
+            [routerLink]="['dashboard/products-list']"
+            class="rounded-md bg-cyan-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+          >
+            Ver productos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+}
