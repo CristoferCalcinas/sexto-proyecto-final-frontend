@@ -1,5 +1,5 @@
 <!-- class="max-w-[400px]" -->
-<mat-card appearance="outlined">
+<mat-card appearance="outlined" [routerLink]="['/dashboard/product/', product().id]" >
   <mat-card-header>
     <mat-card-title>{{ product().nombreProducto }}</mat-card-title>
   </mat-card-header>
