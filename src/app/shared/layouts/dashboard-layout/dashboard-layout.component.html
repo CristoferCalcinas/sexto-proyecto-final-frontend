@@ -16,6 +16,17 @@
       </mat-list-item>
       }
     </mat-nav-list>
+    <div class="p-4 text-center border-t border-gray-200">
+      <button
+        mat-stroked-button
+        [routerLink]="['/dashboard/user-profile']"
+        class="w-[90%]"
+        (click)="sidenav.toggle()"
+      >
+      <mat-icon>person</mat-icon>
+        Ver el perfil
+      </button>
+    </div>
   </mat-sidenav>
 
   <mat-toolbar color="primary">

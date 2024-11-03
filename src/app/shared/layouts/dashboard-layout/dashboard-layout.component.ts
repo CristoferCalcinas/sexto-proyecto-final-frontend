@@ -34,24 +34,19 @@ export class DashboardLayoutComponent {
       url: './search',
     },
     {
+      label: 'Carrito de Compras',
+      icon: 'shopping_cart',
+      url: './shopping-cart',
+    },
+    {
       label: 'Productos en Oferta',
       icon: 'local_offer',
       url: './products-on-sale',
     },
     {
-      label: 'Perfil del Usuario',
-      icon: 'person',
-      url: './user-profile',
-    },
-    {
       label: 'Historial de Compras',
       icon: 'history',
       url: './purchase-history',
-    },
-    {
-      label: 'Carrito de Compras',
-      icon: 'shopping_cart',
-      url: './shopping-cart',
     },
     {
       label: 'Favoritos',
