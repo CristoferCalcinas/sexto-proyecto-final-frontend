@@ -32,6 +32,8 @@ export default class ProductComponent implements OnInit {
         console.log(this.product);
         return;
       });
+
+    // TODO: Agregar la cantidad de productos al carrito, min(1) max(5)
   }
 
   addProductToCart() {
