@@ -17,4 +17,10 @@ export class ProductsService {
       .get<any[]>(`${this.API_URL}/Productos/search/${name}`)
       .pipe(catchError(() => of([])));
   }
+
+  getProductById(id: string) {
+    return this.http
+      .get<any>(`${this.API_URL}/Productos/${id}`)
+      .pipe(catchError(() => of(null)));
+  }
 }
