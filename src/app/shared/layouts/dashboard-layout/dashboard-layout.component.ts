@@ -22,6 +22,8 @@ import { RouterModule } from '@angular/router';
   templateUrl: './dashboard-layout.component.html',
 })
 export class DashboardLayoutComponent {
+  public isAdmin = true;
+
   public sidebarItems = [
     {
       label: 'Listado de Productos',
@@ -62,17 +64,17 @@ export class DashboardLayoutComponent {
 
   public sidebarItemsAdmin = [
     {
-      label: 'Listado de Productos',
-      icon: 'label',
-      url: './admin-products-list',
-    },
-    {
       label: 'Añadir Producto',
       icon: 'add',
       url: './admin-add-product',
     },
     {
-      label: 'Buscar Producto',
+      label: 'Listado de Productos (Deep)',
+      icon: 'label',
+      url: './admin-products-list',
+    },
+    {
+      label: 'Buscar Producto (Deep)',
       icon: 'search',
       url: './admin-search',
     },

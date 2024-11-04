@@ -23,10 +23,18 @@
         class="w-[90%]"
         (click)="sidenav.toggle()"
       >
-      <mat-icon>person</mat-icon>
+        <mat-icon>person</mat-icon>
         Ver el perfil
       </button>
     </div>
+    <mat-nav-list class="border-t border-gray-200" *ngIf="isAdmin">
+      @for (item of sidebarItemsAdmin; track $index) {
+      <mat-list-item [routerLink]="item.url" (click)="sidenav.toggle()">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        {{ item.label }}
+      </mat-list-item>
+      }
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-toolbar color="primary">
