@@ -28,37 +28,37 @@ export class DashboardLayoutComponent {
     {
       label: 'Listado de Productos',
       icon: 'label',
-      url: './products-list',
+      url: '/dashboard/products-list',
     },
     {
       label: 'Buscar Producto',
       icon: 'search',
-      url: './search',
+      url: '/dashboard/search',
     },
     {
       label: 'Carrito de Compras',
       icon: 'shopping_cart',
-      url: './shopping-cart',
+      url: '/dashboard/shopping-cart',
     },
     {
       label: 'Productos en Oferta',
       icon: 'local_offer',
-      url: './products-on-sale',
+      url: '/dashboard/products-on-sale',
     },
     {
       label: 'Historial de Compras',
       icon: 'history',
-      url: './purchase-history',
+      url: '/dashboard/purchase-history',
     },
     {
       label: 'Favoritos',
       icon: 'favorite',
-      url: './favorites',
+      url: '/dashboard/favorites',
     },
     {
       label: 'Soporte',
       icon: 'support',
-      url: './support',
+      url: '/dashboard/support',
     },
   ];
 
@@ -66,32 +66,32 @@ export class DashboardLayoutComponent {
     {
       label: 'Añadir Producto',
       icon: 'add',
-      url: './admin-add-product',
+      url: '/admin/add-product',
     },
     {
       label: 'Listado de Productos (Deep)',
       icon: 'label',
-      url: './admin-products-list',
+      url: '/admin/products-list',
     },
     {
       label: 'Buscar Producto (Deep)',
       icon: 'search',
-      url: './admin-search',
+      url: '/admin/search',
     },
     {
       label: 'Gestión de Usuarios',
       icon: 'people',
-      url: './admin-user-management',
+      url: '/admin/user-management',
     },
     {
       label: 'Reportes',
       icon: 'bar_chart',
-      url: './admin-reports',
+      url: '/admin/reports',
     },
     // {
     //   label: 'Configuración',
     //   icon: 'settings',
-    //   url: './admin-settings',
+    //   url: './settings',
     // },
   ];
 }
