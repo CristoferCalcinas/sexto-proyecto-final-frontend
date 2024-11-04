@@ -79,6 +79,40 @@ export const routes: Routes = [
     loadComponent: () => import('./views/auth/register/register.component'),
   },
   {
+    path: 'admin',
+    loadComponent: () => import('./views/admin/admin.component'),
+    children: [
+      {
+        path: 'add-product',
+        title: 'Agregar Producto',
+        loadComponent: () =>
+          import('./views/admin/add-product/add-product.component'),
+      },
+      {
+        path: 'products-list',
+        title: 'Listado de Productos (Deep)',
+        loadComponent: () =>
+          import('./views/admin/products-list/products-list.component'),
+      },
+      {
+        path: 'search',
+        title: 'Buscar Producto (Deep)',
+        loadComponent: () => import('./views/admin/search/search.component'),
+      },
+      {
+        path: 'user-management',
+        title: 'Gestión de Usuarios',
+        loadComponent: () =>
+          import('./views/admin/user-management/user-management.component'),
+      },
+      {
+        path: 'reports',
+        title: 'Reportes',
+        loadComponent: () => import('./views/admin/reports/reports.component'),
+      },
+    ],
+  },
+  {
     path: '**',
     redirectTo: 'dashboard',
     pathMatch: 'full',
