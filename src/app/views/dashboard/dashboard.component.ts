@@ -5,9 +5,7 @@ import { DashboardLayoutComponent } from '@shared/layouts/dashboard-layout/dashb
   selector: 'app-dashboard',
   standalone: true,
   imports: [DashboardLayoutComponent],
-  templateUrl: './dashboard.component.html',
-  styles: ``
+  template: '<shared-dashboard-layout></shared-dashboard-layout>',
+  styles: ``,
 })
-export default class DashboardComponent {
-
-}
+export default class DashboardComponent {}
