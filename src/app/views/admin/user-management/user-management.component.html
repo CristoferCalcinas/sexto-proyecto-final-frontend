@@ -1,4 +1,4 @@
-<div class="px-4 py-4 sm:px-6 lg:px-8 bg-white">
+<div class="px-4 py-7 sm:px-6 lg:px-8 bg-white">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1 class="text-base font-semibold text-gray-900">Usuarios</h1>
@@ -41,31 +41,43 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white">
+            @for (user of users | async; track $index) {
             <tr>
               <td
                 class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
               >
-                Lindsay Walton
+                {{ user.nombreCliente }}
               </td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                Front-end Developer
+                {{ user.fechaRegistro }}
               </td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                lindsay.waltonexample.com
+                {{ user.correoElectronico }}
               </td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                Member
+                {{ user.rol ? "Pionero" : "Explorador" }}
               </td>
               <td
                 class="flex items-center whitespace-nowrap py-4 pr-4 text-right text-sm sm:pr-0"
               >
                 <button
+                  (click)="changeUserRole(user.id)"
                   class="rounded-md bg-cyan-50 px-3 py-2 text-sm font-semibold text-cyan-600 shadow-sm hover:bg-cyan-100"
                 >
                   Edit
                 </button>
               </td>
             </tr>
+            }@empty {
+            <tr>
+              <td
+                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
+                colspan="4"
+              >
+                No hay usuarios registrados.
+              </td>
+            </tr>
+            }
           </tbody>
         </table>
       </div>

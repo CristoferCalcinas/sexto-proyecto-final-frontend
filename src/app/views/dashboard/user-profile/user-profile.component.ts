@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TitleComponent } from '../../../shared/components/title-component/title-component.component';
-import { UserProfileService } from '../../../services/user-profile.service';
+import { UserService } from '../../../services/user-profile.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,7 +10,7 @@ import { UserProfileService } from '../../../services/user-profile.service';
   styles: ``,
 })
 export default class UserProfileComponent implements OnInit {
-  private userProfileService = inject(UserProfileService);
+  private userProfileService = inject(UserService);
 
   public userProfile: any;
 
