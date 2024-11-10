@@ -1,10 +1,22 @@
-<div>
-  <button>Ocular la lista de usuarios</button>
-
-  <button>Ocular la lista de empleados</button>
+<div class="mb-5 ml-5 space-x-5">
+  <button
+    (click)="visibleUserList = !visibleUserList"
+    class="rounded-full bg-cyan-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+  >
+    {{ visibleUserList ? "Ocular" : "Mostrar" }} la lista de usuarios
+  </button>
+  <button
+    (click)="visibleEmployeeList = !visibleEmployeeList"
+    class="rounded-full bg-cyan-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+  >
+    {{ visibleEmployeeList ? "Ocular" : "Mostrar" }} la lista de empleados
+  </button>
 </div>
 
 <div>
+  @if (visibleUserList) {
   <ui-user-list></ui-user-list>
+  } @if (visibleEmployeeList) {
   <ui-employees-list></ui-employees-list>
+  }
 </div>
