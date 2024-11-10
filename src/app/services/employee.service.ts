@@ -9,7 +9,7 @@ export class EmployeeService {
 
   getAllEmployees() {
     return this.http
-      .get(`${this.API_URL}/Empleado`)
+      .get<any>(`${this.API_URL}/Empleado`)
       .pipe(catchError(() => of([])));
   }
 }
