@@ -1,1 +1,12 @@
-<h1>Hola</h1>
+@if ( products | async; as productList ) {
+
+<!-- Lista de productos -->
+@for ( product of productList; track product.id ) {
+<components-product-card [product]="product"></components-product-card>
+
+} } @else {
+
+<!-- Tendria que haber productos, por eso el mensaje dice cargando -->
+<p>Cargando productos...</p>
+
+}
