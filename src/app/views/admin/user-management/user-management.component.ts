@@ -3,9 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnInit,
 } from '@angular/core';
-import { UserService } from '../../../services/user-profile.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-management',
