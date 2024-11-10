@@ -1,23 +1,12 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-} from '@angular/core';
-import { UserService } from '../../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { UserListComponent } from './ui/user-list/user-list.component';
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [CommonModule, AsyncPipe],
+  imports: [CommonModule, UserListComponent],
   templateUrl: './user-management.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class UserManagementComponent {
-  private userProfileService = inject(UserService);
-  public users = this.userProfileService.getAllUsers();
-
-  changeUserRole(id: any) {
-    console.log(id);
-  }
-}
+export default class UserManagementComponent {}
