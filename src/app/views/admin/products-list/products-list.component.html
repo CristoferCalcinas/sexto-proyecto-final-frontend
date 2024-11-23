@@ -1,10 +1,13 @@
 @if ( products | async; as productList ) {
 
-<!-- Lista de productos -->
-@for ( product of productList; track product.id ) {
-<components-product-card [product]="product"></components-product-card>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  <!-- Lista de productos -->
+  @for ( product of productList; track product.id ) {
+  <components-product-card [product]="product"></components-product-card>
 
-} } @else {
+  }
+</div>
+} @else {
 
 <!-- Tendria que haber productos, por eso el mensaje dice cargando -->
 <p>Cargando productos...</p>
