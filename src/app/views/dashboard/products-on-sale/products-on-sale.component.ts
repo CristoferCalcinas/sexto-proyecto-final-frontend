@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [
     TitleComponent,
-    ProductCardComponent,
     BentoGridComponentComponent,
     RouterLink,
   ],
