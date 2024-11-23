@@ -23,4 +23,8 @@ export class ProductsService {
       .get<any>(`${this.API_URL}/Productos/${id}`)
       .pipe(catchError(() => of(null)));
   }
+
+  addProduct(product: any) {
+    return this.http.post<any>(`${this.API_URL}/Productos`, product);
+  }
 }
