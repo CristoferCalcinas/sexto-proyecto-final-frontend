@@ -178,9 +178,17 @@
               class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm/6 [&_*]:text-black"
               formControlName="productSupplier"
             >
-              <option [value]="1">United States</option>
-              <option>Canada</option>
-              <option [value]="3">Mexico</option>
+              <option value="" hidden>Seleccione un proveedor</option>
+              @if (suppliers$ | async; as suppliers) { @for (supplier of
+              suppliers; track $index) {
+              <option class="text-center" [value]="supplier.id">
+                <span>
+                  {{ supplier.correoElectronico }} - #{{ supplier.telefono }}
+                </span>
+              </option>
+              } } @else {
+              <option>Loading...</option>
+              }
             </select>
           </div>
         </div>
@@ -189,7 +197,7 @@
   </div>
 
   <div class="mt-6 flex items-center justify-end gap-x-6">
-    <button type="button" class="text-sm/6 font-semibold text-white">
+    <button type="submit" class="text-sm/6 font-semibold text-white">
       Cancel
     </button>
     <button

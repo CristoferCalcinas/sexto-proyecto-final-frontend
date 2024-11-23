@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SupplierService } from '../../../services/supplier.service';
 
 @Component({
   selector: 'app-add-product',
@@ -11,6 +12,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export default class AddProductComponent {
   private fb = inject(FormBuilder);
+  private supplierService = inject(SupplierService);
+
+  public suppliers$ = this.supplierService.getSuppliers();
+
   public myForm = this.fb.group({
     productTitle: ['', Validators.required],
     productDescription: ['', Validators.required],
@@ -19,4 +24,9 @@ export default class AddProductComponent {
     productCategory: ['', Validators.required],
     productSupplier: ['', Validators.required],
   });
+
+  printTest(){
+    console.log('Changes detected');
+    console.log(this.suppliers$);
+  }
 }
