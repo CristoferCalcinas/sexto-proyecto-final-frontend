@@ -28,8 +28,12 @@ export default class AddProductComponent {
     productSupplier: ['', Validators.required],
   });
 
-  printTest(){
+  printTest() {
     console.log('Changes detected');
     console.log(this.suppliers$);
+  }
+
+  saveProduct() {
+    console.log(this.myForm.valid);
   }
 }
