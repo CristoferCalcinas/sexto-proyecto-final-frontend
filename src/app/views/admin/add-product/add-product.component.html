@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="myForm">
   <div class="space-y-12">
     <div class="border-b border-white/10 pb-12">
       <h2 class="text-base/7 font-semibold text-white">Agregar un Producto</h2>
@@ -30,6 +30,7 @@
                 id="name_product"
                 class="flex-1 border-0 bg-transparent py-1.5 pl-1 text-white focus:ring-0 sm:text-sm/6"
                 placeholder="Ingrese el nombre del producto nuevo"
+                formControlName="productTitle"
               />
             </div>
           </div>
@@ -45,6 +46,7 @@
               name="about"
               rows="3"
               class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm/6"
+              formControlName="productDescription"
             ></textarea>
           </div>
         </div>
@@ -118,6 +120,7 @@
               id="product_price"
               autocomplete="given-name"
               class="block w-full text-center rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm/6"
+              formControlName="productPrice"
             />
           </div>
         </div>
@@ -135,12 +138,16 @@
               name="quantity-product"
               id="quantity-product"
               class="block w-full text-center rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm/6"
+              formControlName="productQuantity"
             />
           </div>
         </div>
 
         <div class="sm:col-span-3">
-          <label for="product-category" class="block text-sm/6 font-medium text-white">
+          <label
+            for="product-category"
+            class="block text-sm/6 font-medium text-white"
+          >
             Categoria del producto
           </label>
           <div class="mt-2">
@@ -148,8 +155,9 @@
               id="product-category"
               name="product-category"
               class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm/6 [&_*]:text-black"
+              formControlName="productCategory"
             >
-              <option>United States</option>
+              <option [value]="1">United States</option>
               <option>Canada</option>
               <option>Mexico</option>
             </select>
@@ -168,10 +176,11 @@
               id="product-provedor"
               name="product-provedor"
               class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm/6 [&_*]:text-black"
+              formControlName="productSupplier"
             >
-              <option>United States</option>
+              <option [value]="1">United States</option>
               <option>Canada</option>
-              <option>Mexico</option>
+              <option [value]="3">Mexico</option>
             </select>
           </div>
         </div>
@@ -191,3 +200,10 @@
     </button>
   </div>
 </form>
+
+<h3>Formulario</h3>
+<code>
+  <pre>
+    {{ myForm.value | json }}
+  </pre>
+</code>
