@@ -21,7 +21,7 @@ export default class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
-        delay(1500),
+        // delay(1500),
         switchMap(({ id }) => this.productsService.getProductById(id))
       )
       .subscribe((product) => {
