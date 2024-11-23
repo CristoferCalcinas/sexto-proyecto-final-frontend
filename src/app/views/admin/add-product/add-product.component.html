@@ -157,9 +157,17 @@
               class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm/6 [&_*]:text-black"
               formControlName="productCategory"
             >
-              <option [value]="1">United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
+              <option value="" hidden>Seleccione una categoria</option>
+              @if (categories$ | async; as categories) { @for (category of
+              categories; track $index) {
+              <option class="text-center" [value]="category.id">
+                <span>
+                  {{ category.nombreCategoria }}
+                </span>
+              </option>
+              } } @else {
+              <option>Loading...</option>
+              }
             </select>
           </div>
         </div>

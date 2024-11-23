@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SupplierService } from '../../../services/supplier.service';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-add-product',
@@ -13,8 +14,10 @@ import { SupplierService } from '../../../services/supplier.service';
 export default class AddProductComponent {
   private fb = inject(FormBuilder);
   private supplierService = inject(SupplierService);
+  private categoryService = inject(CategoryService);
 
   public suppliers$ = this.supplierService.getSuppliers();
+  public categories$ = this.categoryService.getCategories();
 
   public myForm = this.fb.group({
     productTitle: ['', Validators.required],
