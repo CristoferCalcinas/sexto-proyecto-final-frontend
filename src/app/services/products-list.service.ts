@@ -27,4 +27,11 @@ export class ProductsService {
   addProduct(product: any) {
     return this.http.post<any>(`${this.API_URL}/Productos`, product);
   }
+
+  updateProduct(product: any) {
+    return this.http.put<any>(
+      `${this.API_URL}/Productos`,
+      product
+    );
+  }
 }

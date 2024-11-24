@@ -41,7 +41,13 @@ export default class EditProductComponent implements OnInit {
 
   updateProduct() {
     if (this.myForm.invalid) return;
+    if (this.myForm.pristine) return;
 
-    console.log(this.myForm.value);
+    this.productService
+      .updateProduct({
+        ...this.myForm.value,
+        id: +this.activatedRoute.snapshot.params['id'],
+      })
+      .subscribe(() => console.log('actuliado'));
   }
 }
