@@ -2,13 +2,14 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { DialogCategoryComponent } from './ui/dialog-category/dialog-category.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { CategoryService } from '../../../services/category.service';
 import { ProductsService } from '../../../services/products-list.service';
 import { SupplierService } from '../../../services/supplier.service';
+import { DialogCategoryComponent } from './ui/dialog-category/dialog-category.component';
+import { DialogSupplierComponent } from './ui/dialog-supplier/dialog-supplier.component';
 
 @Component({
   selector: 'app-add-product',
@@ -64,10 +65,19 @@ export default class AddProductComponent {
     this.myForm.reset();
   }
 
-  readonly dialog = inject(MatDialog);
+  readonly dialogCategory = inject(MatDialog);
+  readonly dialogSupplier = inject(MatDialog);
 
   addCategory() {
-    const dialogRef = this.dialog.open(DialogCategoryComponent);
+    const dialogRef = this.dialogCategory.open(DialogCategoryComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  addSupplier() {
+    const dialogRef = this.dialogSupplier.open(DialogSupplierComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
