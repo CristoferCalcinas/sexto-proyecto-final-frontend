@@ -75,6 +75,9 @@ export default class AddProductComponent {
       console.log(`Dialog result: ${result}`);
       if (result) {
         this.categories$ = this.categoryService.getCategories();
+        this.myForm.patchValue({
+          productCategory: result.id,
+        });
       }
     });
   }

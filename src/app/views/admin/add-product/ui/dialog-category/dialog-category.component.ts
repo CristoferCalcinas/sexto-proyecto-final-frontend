@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CategoryService } from '../../../../../services/category.service';
@@ -28,6 +28,8 @@ import { CategoryService } from '../../../../../services/category.service';
 export class DialogCategoryComponent {
   private fb = inject(FormBuilder);
   private categoryService = inject(CategoryService);
+  private dialogRef = inject(MatDialogRef<DialogCategoryComponent>); // Inyectamos MatDialogRef
+
   public myForm = this.fb.group({
     nombreCategoria: ['', [Validators.required, Validators.minLength(3)]],
     descripcion: ['', [Validators.required, Validators.minLength(10)]],
@@ -38,6 +40,7 @@ export class DialogCategoryComponent {
 
     this.categoryService.addCategory(this.myForm.value).subscribe((res) => {
       console.log(res);
+      this.dialogRef.close(res); // Enviamos la categoría creada
     });
   }
 }
