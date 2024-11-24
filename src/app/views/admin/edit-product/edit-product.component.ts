@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { ProductsService } from '../../../services/products-list.service';
 
@@ -20,6 +20,7 @@ export default class EditProductComponent implements OnInit {
   private fb = inject(FormBuilder);
   private productService = inject(ProductsService);
   private activatedRoute = inject(ActivatedRoute);
+  private router = inject(Router);
 
   public myForm = this.fb.group({
     nombreProducto: ['', Validators.required],
@@ -48,6 +49,9 @@ export default class EditProductComponent implements OnInit {
         ...this.myForm.value,
         id: +this.activatedRoute.snapshot.params['id'],
       })
-      .subscribe(() => console.log('actuliado'));
+      .subscribe((product) => {
+        console.log(product);
+        this.router.navigate(['/admin/products-list']);
+      });
   }
 }
