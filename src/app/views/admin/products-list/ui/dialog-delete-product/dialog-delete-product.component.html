@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Eliminar producto - ID#{{ data.id }}</h2>
+<mat-dialog-content>
+  <span class="italic"> ¿Estás seguro de eliminar el producto ? </span>
+  <br />
+  <br />
+
+  <div>
+    Nombre del producto:
+    <strong class="font-bold tracking-widest">
+      {{ data.nombreProducto | uppercase }}
+    </strong>
+    <br />
+
+    Cantidad en stock:
+    <strong class="font-bold tracking-widest">
+      {{ data.cantidadStock }}
+    </strong>
+    <br />
+
+    Precio:
+    <strong class="font-bold tracking-widest">
+      {{ data.precio | currency }}
+    </strong>
+    <br />
+
+    Fecha de ingreso:
+    <strong class="font-bold tracking-widest">
+      {{ data.fechaIngreso | date : "dd/MM/yyyy" }}
+    </strong>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
