@@ -87,6 +87,12 @@ export default class AddProductComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.suppliers$ = this.supplierService.getSuppliers();
+        this.myForm.patchValue({
+          productSupplier: result.id,
+        });
+      }
     });
   }
 }

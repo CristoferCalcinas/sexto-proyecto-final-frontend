@@ -12,4 +12,8 @@ export class SupplierService {
       .get<any[]>(`${this.API_URL}/Proveedor`)
       .pipe(catchError(() => of([])));
   }
+
+  addSupplier(supplier: any) {
+    return this.http.post(`${this.API_URL}/Proveedor`, supplier);
+  }
 }

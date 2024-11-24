@@ -1,10 +1,16 @@
 <h2 mat-dialog-title>Agregar un proveedor</h2>
 <mat-dialog-content class="mat-typography">
-  <form class="w-full space-y-10 py-2">
+  <form [formGroup]="myForm" class="w-full space-y-10 py-2">
     <mat-form-field class="w-full">
       <mat-label> Numero de telefono </mat-label>
       <span matTextPrefix>+591 &nbsp;</span>
-      <input type="tel" matInput placeholder="(6 / 7) - 55 - 54321" autofocus />
+      <input
+        type="tel"
+        matInput
+        placeholder="(6 / 7) - 55 - 54321"
+        autofocus
+        formControlName="telefono"
+      />
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
 
@@ -15,6 +21,7 @@
         #message
         maxlength="30"
         placeholder="Ej. proveedor1@email.com"
+        formControlName="correoElectronico"
       />
       <mat-hint align="start">
         <strong> Asegurese de que el correo sea correcto </strong>
@@ -29,6 +36,7 @@
         #message
         maxlength="100"
         placeholder="Ej. Av. 6 de Agosto, Edif. Torre 1, Piso 2"
+        formControlName="direccion"
       />
       <mat-hint align="start">
         <strong> La direccion debe ser clara y precisa </strong>
@@ -39,5 +47,12 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true">Guardar proveedor</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    [disabled]="myForm.invalid"
+    (click)="createSupplier()"
+  >
+    Guardar proveedor
+  </button>
 </mat-dialog-actions>
