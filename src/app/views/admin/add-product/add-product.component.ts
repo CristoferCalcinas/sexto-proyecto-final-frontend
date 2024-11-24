@@ -73,6 +73,9 @@ export default class AddProductComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.categories$ = this.categoryService.getCategories();
+      }
     });
   }
 

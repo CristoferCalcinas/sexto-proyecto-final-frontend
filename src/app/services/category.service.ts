@@ -13,4 +13,9 @@ export class CategoryService {
       .get<any[]>(`${this.API_URL}/Categorium`)
       .pipe(catchError(() => of([])));
   }
+
+  addCategory(category: any) {
+    return this.http.post<any>(`${this.API_URL}/Categorium`, category);
+    // .pipe(catchError(() => of([])));
+  }
 }

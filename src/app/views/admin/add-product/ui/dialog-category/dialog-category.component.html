@@ -1,39 +1,47 @@
 <h2 mat-dialog-title>Crear una nueva categoria</h2>
 <mat-dialog-content class="mat-typography">
-  <form class="w-full space-y-10 py-2">
+  <form [formGroup]="myForm" class="w-full space-y-10 py-2">
     <mat-form-field class="w-full">
       <mat-label> Nombre de la categoria </mat-label>
       <input
         matInput
-        #message
-        maxlength="256"
+        #nomCategoria
+        maxlength="50"
         placeholder="Ej. Portaminas, Vinilos, Papel seda..."
         autofocus
+        formControlName="nombreCategoria"
       />
       <mat-hint align="start">
         <strong>
           Considera que el nombre de la categoria debe ser unico.
         </strong>
       </mat-hint>
-      <mat-hint align="end"
-        >{{ message.value.length }} / 50</mat-hint
-      > </mat-form-field
-    ><mat-form-field class="w-full">
+      <mat-hint align="end"> {{ nomCategoria.value.length }} / 50 </mat-hint>
+    </mat-form-field>
+    <mat-form-field class="w-full">
       <mat-label> Descripcion de la categoria </mat-label>
       <input
         matInput
-        #message
-        maxlength="256"
+        #desc
+        maxlength="200"
         placeholder="Ej. Portaminas de colores, Vinilos decorativos..."
+        formControlName="descripcion"
       />
       <mat-hint align="start">
         <strong> Describe brevemente la categoria. </strong>
       </mat-hint>
-      <mat-hint align="end">{{ message.value.length }} / 200</mat-hint>
+      <mat-hint align="end">{{ desc.value.length }} / 200</mat-hint>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true">Crear categoria</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    [disabled]="myForm.invalid"
+    (click)="createCategory()"
+  >
+    Crear categoria
+  </button>
 </mat-dialog-actions>
