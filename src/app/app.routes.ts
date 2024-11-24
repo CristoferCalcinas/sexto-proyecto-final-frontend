@@ -89,6 +89,12 @@ export const routes: Routes = [
           import('./views/admin/add-product/add-product.component'),
       },
       {
+        path: 'edit-product/:id',
+        title: 'Editar Producto',
+        loadComponent: () =>
+          import('./views/admin/edit-product/edit-product.component'),
+      },
+      {
         path: 'products-list',
         title: 'Listado de Productos (Deep)',
         loadComponent: () =>
