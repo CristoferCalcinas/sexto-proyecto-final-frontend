@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialogTitle,
@@ -6,6 +11,9 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
+import { MatListModule, MatSelectionList } from '@angular/material/list';
+import { CategoryService } from '../../../../../services/category.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-delete-category-dialog',
@@ -16,8 +24,27 @@ import {
     MatDialogActions,
     MatDialogClose,
     MatButtonModule,
+    MatListModule,
+    AsyncPipe,
   ],
   templateUrl: './delete-category-dialog.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DeleteCategoryDialogComponent {}
+export class DeleteCategoryDialogComponent {
+  private categoryService = inject(CategoryService);
+  public categories$ = this.categoryService.getCategories();
+  @ViewChild('ctgy') categoryList!: MatSelectionList;
+
+  deleteCategories() {
+    const selectedOptions = this.categoryList.selectedOptions.selected;
+    const selectedCategories = selectedOptions.map((option) => option.value);
+
+    if (!selectedCategories.length) return;
+
+    this.categoryService
+      .deleteCategories(selectedCategories)
+      .subscribe((resp) => {
+        console.log(resp);
+      });
+  }
+}

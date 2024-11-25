@@ -1,5 +1,22 @@
-<h2 mat-dialog-title>Dialog with elements</h2>
-<mat-dialog-content>This dialog showcases the title, close, content and actions elements.</mat-dialog-content>
+<h2 mat-dialog-title>Seleccione las categorias a eliminar</h2>
+<mat-dialog-content>
+  @if (categories$ | async; as categories) {
+
+  <mat-selection-list #ctgy>
+    @for (category of categories; track category.id) {
+    <mat-list-option [value]="category.id">{{
+      category.nombreCategoria
+    }}</mat-list-option>
+    }
+  </mat-selection-list>
+
+  <p>Categorias Seleccionadas: {{ ctgy.selectedOptions.selected.length }}</p>
+
+  }
+</mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" (click)="deleteCategories()">
+    Eliminar
+  </button>
 </mat-dialog-actions>

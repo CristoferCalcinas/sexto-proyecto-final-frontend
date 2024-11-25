@@ -18,4 +18,10 @@ export class CategoryService {
     return this.http.post<any>(`${this.API_URL}/Categorium`, category);
     // .pipe(catchError(() => of([])));
   }
+
+  deleteCategories(ids: number[]) {
+    return this.http.delete<any>(`${this.API_URL}/Categorium/batch`, {
+      body: ids,
+    });
+  }
 }
