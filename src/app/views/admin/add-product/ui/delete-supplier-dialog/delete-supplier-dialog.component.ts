@@ -40,7 +40,6 @@ export class DeleteSupplierDialogComponent {
     const selectedSuppliers = selectedOptions.map((option) => option.value);
 
     if (!selectedSuppliers.length) return;
-    console.log(selectedSuppliers);
     this.supplierService.deleteSuppliers(selectedSuppliers).subscribe(() => {
       this.suppliers$ = this.supplierService.getSuppliers();
     });
