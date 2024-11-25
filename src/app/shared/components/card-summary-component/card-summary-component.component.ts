@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'shared-card-summary-component',
   standalone: true,
-  imports: [MatButtonModule, CommonModule],
+  imports: [MatButtonModule, CommonModule, RouterModule],
   templateUrl: './card-summary-component.component.html',
   styles: ``,
 })
