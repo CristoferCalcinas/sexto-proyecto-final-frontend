@@ -29,9 +29,10 @@ export class ProductsService {
   }
 
   updateProduct(product: any) {
-    return this.http.put<any>(
-      `${this.API_URL}/Productos`,
-      product
-    );
+    return this.http.put<any>(`${this.API_URL}/Productos`, product);
+  }
+
+  deleteProduct(id: string) {
+    return this.http.delete<any>(`${this.API_URL}/Productos/${id}`);
   }
 }

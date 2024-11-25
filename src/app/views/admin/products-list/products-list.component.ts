@@ -1,10 +1,16 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
 import { ProductsService } from '../../../services/products-list.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogDeleteProductComponent } from './ui/dialog-delete-product/dialog-delete-product.component';
 
 @Component({
   selector: 'app-products-list',
@@ -13,10 +19,11 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './products-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class ProductsListComponent {
+export default class ProductsListComponent implements OnInit {
   private productsService = inject(ProductsService);
   private router = inject(Router);
-  public products: Observable<any[]> = this.productsService.getAllProducts();
+  private productsSubject = new BehaviorSubject<any[]>([]);
+  public products = this.productsSubject.asObservable();
 
   editProduct(product: any) {
     this.router.navigate(['/admin/edit-product', product.id]);
@@ -24,5 +31,43 @@ export default class ProductsListComponent {
 
   deleteProduct(product: any) {
     console.log(product);
+    this.openDialog('50ms', '100ms', product);
+  }
+
+  private loadProducts() {
+    this.productsService.getAllProducts().subscribe((products) => {
+      this.productsSubject.next(products);
+    });
+  }
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    product: any
+  ): void {
+    const dialogRef = this.dialog.open(DialogDeleteProductComponent, {
+      width: '350px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: product,
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(
+        // Si el diálogo confirma la eliminación, llamamos al servicio de eliminación
+        switchMap((result) =>
+          result ? this.productsService.deleteProduct(product.id) : []
+        ),
+        // Una vez eliminado, volvemos a cargar los productos
+        tap(() => this.loadProducts())
+      )
+      .subscribe();
+  }
+
+  ngOnInit(): void {
+    this.loadProducts();
   }
 }
