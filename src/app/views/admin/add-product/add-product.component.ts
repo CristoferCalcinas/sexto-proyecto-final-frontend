@@ -11,6 +11,7 @@ import { SupplierService } from '../../../services/supplier.service';
 import { DialogCategoryComponent } from './ui/dialog-category/dialog-category.component';
 import { DialogSupplierComponent } from './ui/dialog-supplier/dialog-supplier.component';
 import { DeleteCategoryDialogComponent } from './ui/delete-category-dialog/delete-category-dialog.component';
+import { DeleteSupplierDialogComponent } from './ui/delete-supplier-dialog/delete-supplier-dialog.component';
 
 @Component({
   selector: 'app-add-product',
@@ -99,5 +100,12 @@ export default class AddProductComponent {
     });
   }
 
-  deleteSupplier() {}
+  deleteSupplier() {
+    const dialogRef = this.dialog.open(DeleteSupplierDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      console.log(result);
+    });
+  }
 }

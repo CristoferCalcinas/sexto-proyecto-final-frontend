@@ -16,4 +16,10 @@ export class SupplierService {
   addSupplier(supplier: any) {
     return this.http.post(`${this.API_URL}/Proveedor`, supplier);
   }
+
+  deleteSuppliers(ids: number[]) {
+    return this.http.delete(`${this.API_URL}/Proveedor/batch`, {
+      body: ids,
+    });
+  }
 }

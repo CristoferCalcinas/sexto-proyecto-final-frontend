@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Seleccione las categorias a eliminar</h2>
+<mat-dialog-content>
+  @if (suppliers$ | async; as suppliers) {
+
+  <mat-selection-list #supp>
+    @for (supplier of suppliers; track supplier.id) {
+    <mat-list-option [value]="supplier.id">{{
+      supplier.correoElectronico
+    }}</mat-list-option>
+    }
+  </mat-selection-list>
+
+  <p>Categorias Seleccionadas: {{ supp.selectedOptions.selected.length }}</p>
+
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" (click)="deletSuppliers()">
+    Eliminar
+  </button>
+</mat-dialog-actions>
