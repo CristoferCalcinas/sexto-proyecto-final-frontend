@@ -10,6 +10,7 @@ import { ProductsService } from '../../../services/products-list.service';
 import { SupplierService } from '../../../services/supplier.service';
 import { DialogCategoryComponent } from './ui/dialog-category/dialog-category.component';
 import { DialogSupplierComponent } from './ui/dialog-supplier/dialog-supplier.component';
+import { DeleteCategoryDialogComponent } from './ui/delete-category-dialog/delete-category-dialog.component';
 
 @Component({
   selector: 'app-add-product',
@@ -65,11 +66,24 @@ export default class AddProductComponent {
     this.myForm.reset();
   }
 
-  readonly dialogCategory = inject(MatDialog);
-  readonly dialogSupplier = inject(MatDialog);
+  readonly dialog = inject(MatDialog);
 
   addCategory() {
-    const dialogRef = this.dialogCategory.open(DialogCategoryComponent);
+    const dialogRef = this.dialog.open(DialogCategoryComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.categories$ = this.categoryService.getCategories();
+        this.myForm.patchValue({
+          productCategory: result.id,
+        });
+      }
+    });
+  }
+
+  deleteCategory() {
+    const dialogRef = this.dialog.open(DeleteCategoryDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -83,16 +97,12 @@ export default class AddProductComponent {
   }
 
   addSupplier() {
-    const dialogRef = this.dialogSupplier.open(DialogSupplierComponent);
+    const dialogRef = this.dialog.open(DialogSupplierComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-      if (result) {
-        this.suppliers$ = this.supplierService.getSuppliers();
-        this.myForm.patchValue({
-          productSupplier: result.id,
-        });
-      }
     });
   }
+
+  deleteSupplier() {}
 }
