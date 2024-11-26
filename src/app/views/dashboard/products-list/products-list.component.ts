@@ -5,6 +5,7 @@ import { ProductsService } from '../../../services/products-list.service';
 import { CarritoService } from '../../../services/carrito.service';
 import { DetalleCarritoService } from '../../../services/detalle-carrito.service';
 import { catchError, of, switchMap, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
@@ -14,6 +15,7 @@ import { catchError, of, switchMap, tap } from 'rxjs';
   styles: ``,
 })
 export default class ProductsListComponent implements OnInit {
+  private router = inject(Router);
   private productsService = inject(ProductsService);
   private carritoService = inject(CarritoService);
   private detalleCarritoService = inject(DetalleCarritoService);
@@ -27,8 +29,15 @@ export default class ProductsListComponent implements OnInit {
   }
 
   addProductToCart(product: any) {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.carritoService
-      .getCarritoByUserId(1)
+      .getCarritoByUserId(+userId)
       .pipe(
         switchMap((carrito) =>
           this.detalleCarritoService.createDetalleCarrito(
