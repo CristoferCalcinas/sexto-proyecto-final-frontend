@@ -1,8 +1,6 @@
 <shared-title-component title="Carrito de compras" />
 
-<div
-  class="space-y-10 grid grid-cols-1 lg:grid-cols-2 lg:space-x-10 lg:space-y-0"
->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
   @for (detalle of detalles; track $index) {
   <shared-card-item-component [detalle]="detalle" />
   }@empty {
