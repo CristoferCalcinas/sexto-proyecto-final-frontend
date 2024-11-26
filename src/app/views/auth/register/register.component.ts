@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'view-register',
@@ -20,6 +21,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    RouterLink,
   ],
   templateUrl: './register.component.html',
   styles: ``,
