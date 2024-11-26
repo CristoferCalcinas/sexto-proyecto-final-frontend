@@ -3,6 +3,7 @@ import { TitleComponent } from '@shared/components/title-component/title-compone
 import { CardItemComponentComponent } from '@shared/components/card-item-component/card-item-component.component';
 import { CardSummaryComponentComponent } from '../../../shared/components/card-summary-component/card-summary-component.component';
 import { ShoppingCartService } from '../../../services/shopping-cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,6 +17,7 @@ import { ShoppingCartService } from '../../../services/shopping-cart.service';
   styles: ``,
 })
 export default class ShoppingCartComponent implements OnInit {
+  private router = inject(Router);
   private shoppingCartService = inject(ShoppingCartService);
 
   public shoppingCartItems: any[] = [];
@@ -23,8 +25,15 @@ export default class ShoppingCartComponent implements OnInit {
   public detalles: any[] = [];
 
   ngOnInit(): void {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+
     this.shoppingCartService
-      .getShoppingCartByUserId(1)
+      .getShoppingCartByUserId(+userId)
       .subscribe((data: any) => {
         this.shoppingCartItems = data;
         this.detalles = data[0].detalleCarritos;
