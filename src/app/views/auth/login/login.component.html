@@ -1,21 +1,28 @@
 <shared-auth-layout authTitle="Inicio de sesión">
   <!-- Formulario de inicio de sesion -->
-  <form class="min-w-[150px] max-w-[500px] w-full space-y-5">
+  <form
+    [formGroup]="myForm"
+    class="min-w-[150px] max-w-[500px] w-full space-y-5"
+  >
     <mat-form-field class="w-full">
-      <mat-label>Email</mat-label>
+      <mat-label>Correo electrónico</mat-label>
       <input
         type="email"
         matInput
-        [formControl]="emailFormControl"
-        [errorStateMatcher]="matcher"
-        placeholder="Ex. pat@example.com"
+        placeholder="Ej. correo@google.com"
+        formControlName="correoElectronico"
       />
-      <mat-hint>Errors appear instantly!</mat-hint>
-      @if (emailFormControl.hasError('email') &&
+      <mat-hint> Los errores aparecen instantáneamente! </mat-hint>
+      @if (emailFormControl.hasError('correoElectronico') &&
       !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
+      <mat-error>
+        Por favor, introduzca una dirección de correo electrónico válida
+      </mat-error>
       } @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
+      <mat-error>
+        El correo electrónico es
+        <strong> requerido </strong>
+      </mat-error>
       }
     </mat-form-field>
 

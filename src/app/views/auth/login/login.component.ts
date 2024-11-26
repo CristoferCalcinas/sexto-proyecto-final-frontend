@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
@@ -12,9 +12,9 @@ import {
   Validators,
   FormsModule,
   ReactiveFormsModule,
+  FormBuilder,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-
 
 @Component({
   selector: 'view-login',
@@ -27,12 +27,18 @@ import { RouterLink } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './login.component.html',
   styles: ``,
 })
 export default class LoginComponent {
+  private fb = inject(FormBuilder);
+  public myForm = this.fb.group({
+    correoElectronico: ['', [Validators.required, Validators.email]],
+    contraseña: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
