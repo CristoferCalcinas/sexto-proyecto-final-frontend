@@ -17,4 +17,23 @@ export class DetalleCarritoService {
       .patch(`${this.API_URL}/DetalleCarrito/${id}`, changes)
       .pipe(catchError(() => of([])));
   }
+
+  createDetalleCarrito(
+    carritoId: number,
+    productoId: any,
+    cantidad: any,
+    precioUnitario: any
+  ) {
+    const detalleCarritoBody = {
+      carritoId,
+      productoId,
+      cantidad,
+      precioUnitario,
+    };
+
+    return this.http.post<any>(
+      `${this.API_URL}/DetalleCarrito`,
+      detalleCarritoBody
+    );
+  }
 }
