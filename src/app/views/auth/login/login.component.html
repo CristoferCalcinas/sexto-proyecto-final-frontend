@@ -2,6 +2,7 @@
   <!-- Formulario de inicio de sesion -->
   <form
     [formGroup]="myForm"
+    (ngSubmit)="onSubmit()"
     class="min-w-[150px] max-w-[500px] w-full space-y-5"
   >
     <mat-form-field class="w-full">
@@ -12,35 +13,41 @@
         placeholder="Ej. correo@google.com"
         formControlName="correoElectronico"
       />
-      <mat-hint> Los errores aparecen instantáneamente! </mat-hint>
-      @if (emailFormControl.hasError('correoElectronico') &&
-      !emailFormControl.hasError('required')) {
+      <mat-hint>Los errores aparecen instantáneamente!</mat-hint>
+      @if (hasError('correoElectronico', 'email')) {
       <mat-error>
         Por favor, introduzca una dirección de correo electrónico válida
       </mat-error>
-      } @if (emailFormControl.hasError('required')) {
+      } @if (hasError('correoElectronico', 'required')) {
       <mat-error>
-        El correo electrónico es
-        <strong> requerido </strong>
+        El correo electrónico es <strong>requerido</strong>
       </mat-error>
       }
     </mat-form-field>
 
     <mat-form-field class="w-full">
-      <mat-label>Password</mat-label>
+      <mat-label>Contraseña</mat-label>
       <input
-        type="password"
+        [type]="hidePassword ? 'password' : 'text'"
         matInput
-        [formControl]="emailFormControl"
-        [errorStateMatcher]="matcher"
-        placeholder="Ex. pat@example.com"
+        placeholder="Ej. 123456"
+        formControlName="contraseña"
       />
-      <mat-hint>Errors appear instantly!</mat-hint>
-      @if (emailFormControl.hasError('email') &&
-      !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-      } @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="togglePasswordVisibility()"
+      >
+        <mat-icon>{{
+          hidePassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+      <mat-hint>Los errores aparecen instantáneamente!</mat-hint>
+      @if (hasError('contraseña', 'minlength')) {
+      <mat-error> La contraseña debe tener al menos 6 caracteres </mat-error>
+      } @if (hasError('contraseña', 'required')) {
+      <mat-error> La contraseña es <strong>requerida</strong> </mat-error>
       }
     </mat-form-field>
 
@@ -54,7 +61,14 @@
     </div>
 
     <mat-card-actions class="flex items-center justify-center">
-      <button mat-button>Enviar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="myForm.invalid"
+      >
+        Iniciar Sesión
+      </button>
     </mat-card-actions>
   </form>
 </shared-auth-layout>
