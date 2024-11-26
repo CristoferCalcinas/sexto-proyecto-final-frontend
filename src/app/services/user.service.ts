@@ -16,4 +16,9 @@ export class UserService {
       .get<any>(`${this.API_URL}/Cliente`)
       .pipe(catchError(() => of([])));
   }
+
+  login(email: string, password: string) {
+    // console.log(password);
+    return this.http.get<any>(`${this.API_URL}/Cliente/email/${email}`);
+  }
 }
