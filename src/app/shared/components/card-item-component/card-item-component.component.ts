@@ -30,6 +30,6 @@ export class CardItemComponentComponent {
 
   onDeleteItem() {
     console.log('onDeleteItem', this.detalle().id);
-    // this.detalleCarritoService.deleteDetalleCarrito(this.detalle().id).subscribe();
+    this.detalleCarritoService.deleteDetalleCarrito(this.detalle().id).subscribe();
   }
 }

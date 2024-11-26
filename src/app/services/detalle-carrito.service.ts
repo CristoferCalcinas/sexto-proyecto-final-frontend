@@ -36,4 +36,8 @@ export class DetalleCarritoService {
       detalleCarritoBody
     );
   }
+
+  deleteDetalleCarrito(id: number) {
+    return this.http.delete(`${this.API_URL}/DetalleCarrito/${id}`);
+  }
 }
