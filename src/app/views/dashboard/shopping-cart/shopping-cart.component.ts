@@ -35,6 +35,8 @@ export default class ShoppingCartComponent implements OnInit {
     this.shoppingCartService
       .getShoppingCartByUserId(+userId)
       .subscribe((data: any) => {
+        if (!data.length) return;
+
         this.shoppingCartItems = data;
         this.detalles = data[0].detalleCarritos;
       });
