@@ -1,20 +1,22 @@
 <shared-auth-layout authTitle="Registro de usuario">
-  <form class="min-w-[150px] max-w-[500px] w-full space-y-5">
+  <form
+    [formGroup]="myForm"
+    (ngSubmit)="onSubmit()"
+    class="min-w-[150px] max-w-[500px] w-full space-y-5"
+  >
     <mat-form-field class="w-full">
       <mat-label>Nombre Completo</mat-label>
       <input
         type="text"
         matInput
-        [formControl]="emailFormControl"
-        [errorStateMatcher]="matcher"
-        placeholder="Ex. pat@example.com"
+        placeholder="Ex. Patricio"
+        formControlName="nombreCliente"
       />
-      <mat-hint>Errors appear instantly!</mat-hint>
-      @if (emailFormControl.hasError('email') &&
-      !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-      } @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
+      <mat-hint> Los errores aparecen instantáneamente! </mat-hint>
+      @if ( hasError('nombreCliente', 'required') ) {
+      <mat-error> El nombre es <strong>requerido</strong> </mat-error>
+      } @if ( hasError('nombreCliente', 'minlength') ) {
+      <mat-error> El nombre debe tener al menos 3 caracteres </mat-error>
       }
     </mat-form-field>
 
@@ -23,16 +25,18 @@
       <input
         type="email"
         matInput
-        [formControl]="emailFormControl"
-        [errorStateMatcher]="matcher"
-        placeholder="Ex. pat@example.com"
+        placeholder="Ej. correo@google.com"
+        formControlName="correoElectronico"
       />
-      <mat-hint>Errors appear instantly!</mat-hint>
-      @if (emailFormControl.hasError('email') &&
-      !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-      } @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
+      <mat-hint> Los errores aparecen instantáneamente! </mat-hint>
+      @if ( hasError('correoElectronico', 'required') ){
+      <mat-error>
+        El correo electrónico es <strong>requerido</strong>
+      </mat-error>
+      } @if ( hasError('correoElectronico', 'email') ){
+      <mat-error>
+        Por favor, introduzca una dirección de correo electrónico válida
+      </mat-error>
       }
     </mat-form-field>
 
@@ -41,16 +45,14 @@
       <input
         type="password"
         matInput
-        [formControl]="emailFormControl"
-        [errorStateMatcher]="matcher"
-        placeholder="Ex. pat@example.com"
+        placeholder="Ej. 123456"
+        formControlName="contraseña"
       />
-      <mat-hint>Errors appear instantly!</mat-hint>
-      @if (emailFormControl.hasError('email') &&
-      !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-      } @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
+      <mat-hint> Los errores aparecen instantáneamente! </mat-hint>
+      @if ( hasError('contraseña', 'required') ){
+      <mat-error> La contraseña es <strong>requerida</strong> </mat-error>
+      } @if ( hasError('contraseña', 'minlength') ){
+      <mat-error> La contraseña debe tener al menos 6 caracteres </mat-error>
       }
     </mat-form-field>
 
@@ -64,7 +66,14 @@
     </div>
 
     <mat-card-actions class="flex items-center justify-center">
-      <button mat-button>Enviar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="myForm.invalid"
+      >
+        Crear cuenta
+      </button>
     </mat-card-actions>
   </form>
 </shared-auth-layout>

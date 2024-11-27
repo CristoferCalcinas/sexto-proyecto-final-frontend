@@ -21,4 +21,8 @@ export class UserService {
     // console.log(password);
     return this.http.get<any>(`${this.API_URL}/Cliente/email/${email}`);
   }
+
+  register(data: any) {
+    return this.http.post<any>(`${this.API_URL}/Cliente`, data);
+  }
 }

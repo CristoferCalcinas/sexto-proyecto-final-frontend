@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { catchError, EMPTY, tap } from 'rxjs';
 
 @Component({
   selector: 'view-register',
@@ -14,10 +15,8 @@ import { RouterLink } from '@angular/router';
   imports: [
     AuthLayoutComponent,
     MatFormFieldModule,
-    FormsModule,
     MatButtonModule,
     MatCardModule,
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
@@ -27,24 +26,60 @@ import { RouterLink } from '@angular/router';
   styles: ``,
 })
 export default class RegisterComponent {
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private userService = inject(UserService);
 
-  matcher = new MyErrorStateMatcher();
-}
+  public myForm = this.fb.group({
+    nombreCliente: ['', [Validators.required, Validators.minLength(3)]],
+    correoElectronico: ['', [Validators.required, Validators.email]],
+    contraseña: ['', [Validators.required, Validators.minLength(6)]],
+  });
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
+  public onSubmit(): void {
+    if (this.myForm.invalid) {
+      this.myForm.markAllAsTouched();
+      return;
+    }
+
+    const { nombreCliente, correoElectronico, contraseña } = this.myForm.value;
+
+    if (
+      !nombreCliente?.trim() ||
+      !correoElectronico?.trim() ||
+      !contraseña?.trim()
+    )
+      return;
+
+    this.userService
+      .register({ nombreCliente, correoElectronico })
+      .pipe(
+        tap((resp) => {
+          if (!resp) return;
+
+          // Guardar información esencial en localStorage
+          localStorage.setItem('userId', resp.id.toString());
+          localStorage.setItem('userEmail', resp.correoElectronico);
+
+          // Información sensible NO debe guardarse en localStorage
+          console.log('Registro exitoso');
+        }),
+        catchError((error) => {
+          // Manejo de errores en el registro
+          console.error('Error en el registro', error);
+          return EMPTY;
+        })
+      )
+      .subscribe({
+        next: () => {
+          // Navegación tras registro exitoso
+          this.router.navigate(['/dashboard/products-list']);
+        },
+      });
+  }
+
+  public hasError(controlName: string, errorName: string): boolean {
+    const control = this.myForm.get(controlName)!;
+    return control.hasError(errorName) && (control.dirty || control.touched);
   }
 }
