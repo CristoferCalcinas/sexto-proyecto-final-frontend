@@ -86,7 +86,7 @@ export default class LoginComponent {
       .subscribe({
         next: () => {
           // Navegación tras inicio de sesión exitoso
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/products-list']);
         },
       });
   }
