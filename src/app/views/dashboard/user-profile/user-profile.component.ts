@@ -3,10 +3,13 @@ import { TitleComponent } from '../../../shared/components/title-component/title
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 
+// Import your AvatarModule
+import { AvatarModule } from 'ngx-avatars';
+
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [TitleComponent],
+  imports: [TitleComponent, AvatarModule],
   templateUrl: './user-profile.component.html',
   styles: ``,
 })
@@ -15,6 +18,7 @@ export default class UserProfileComponent implements OnInit {
   private userProfileService = inject(UserService);
 
   public userProfile: any;
+  public userEmail = localStorage.getItem('userEmail')?.split('@')[0].slice(0, 2);
 
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
