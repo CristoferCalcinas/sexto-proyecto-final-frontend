@@ -242,8 +242,9 @@
   <div class="mt-6 flex items-center justify-end gap-x-6">
     <button
       type="submit"
-      class="rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500"
+      class="rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
       (click)="saveProduct()"
+      [disabled]="myForm.invalid"
     >
       Agregar Producto
     </button>
