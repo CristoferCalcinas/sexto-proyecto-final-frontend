@@ -4,9 +4,10 @@ import { TitleComponent } from '@shared/components/title-component/title-compone
 import { ProductsService } from '../../../services/products-list.service';
 import { CarritoService } from '../../../services/carrito.service';
 import { DetalleCarritoService } from '../../../services/detalle-carrito.service';
-import { catchError, of, switchMap, tap } from 'rxjs';
+import { catchError, firstValueFrom, of, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { CommonModule, JsonPipe } from '@angular/common';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-products-list',
@@ -20,10 +21,11 @@ export default class ProductsListComponent implements OnInit {
   private productsService = inject(ProductsService);
   private carritoService = inject(CarritoService);
   private detalleCarritoService = inject(DetalleCarritoService);
-
+  private userService = inject(UserService);
   public productsByCategory: any = {};
+  public isAdmin: boolean = false;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.productsService.getAllProducts().subscribe((products) => {
       // this.products = products;
       // Agrupar los productos por categoría
@@ -38,6 +40,8 @@ export default class ProductsListComponent implements OnInit {
         return acc;
       }, {});
     });
+
+    this.isAdmin = !(await this.isNotAdmin());
   }
 
   addProductToCart(product: any) {
@@ -71,5 +75,20 @@ export default class ProductsListComponent implements OnInit {
 
   getCategories(): string[] {
     return Object.keys(this.productsByCategory);
+  }
+
+  async isNotAdmin(): Promise<boolean> {
+    try {
+      const userEmail = localStorage.getItem('userEmail');
+      if (!userEmail) return false;
+
+      const user = await firstValueFrom(
+        this.userService.getUserByEmail(userEmail)
+      );
+      return !user.cargo;
+    } catch (error) {
+      console.error('Error checking admin status', error);
+      return false;
+    }
   }
 }
