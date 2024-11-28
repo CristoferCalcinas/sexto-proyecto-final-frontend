@@ -1,11 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'shared-dashboard-layout',
@@ -21,10 +23,11 @@ import { Router, RouterModule } from '@angular/router';
   ],
   templateUrl: './dashboard-layout.component.html',
 })
-export class DashboardLayoutComponent {
+export class DashboardLayoutComponent implements OnInit {
   private router = inject(Router);
-  public isAdmin = true;
+  private userService = inject(UserService);
 
+  public isAdmin: boolean = false;
   public sidebarItems = [
     {
       label: 'Listado de Productos',
@@ -127,5 +130,19 @@ export class DashboardLayoutComponent {
       // Ensure user is logged out even if something fails
       window.location.href = '/auth/login';
     }
+  }
+
+  ngOnInit(): void {
+    this.userService
+      .login(localStorage.getItem('userEmail')!, 'password')
+      .pipe(
+        // Transformar la respuesta para obtener el valor booleano
+        map((user) => !user.cargo),
+        // Manejar errores y devolver `false` directamente si ocurre uno
+        catchError(() => of(false))
+      )
+      .subscribe((isAdmin) => {
+        this.isAdmin = !isAdmin;
+      });
   }
 }
