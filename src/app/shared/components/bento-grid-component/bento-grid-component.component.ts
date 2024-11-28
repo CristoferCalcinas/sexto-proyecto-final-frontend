@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
+
+import { AvatarModule } from 'ngx-avatars';
 
 @Component({
   selector: 'shared-bento-grid-component',
   standalone: true,
-  imports: [],
+  imports: [AvatarModule, CommonModule],
   templateUrl: './bento-grid-component.component.html',
   styles: ``,
 })

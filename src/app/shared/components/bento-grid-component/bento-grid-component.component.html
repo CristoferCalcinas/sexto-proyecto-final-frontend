@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+<div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8 text-black">
   <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
     <!-- Elemento de la derecha -->
     <div class="relative lg:row-span-2">
@@ -16,25 +16,55 @@
           </p>
           <p class="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
             {{ getItemDetails(0)?.item_1?.descripcion }}
-
-            {{
-              getItemDetails(1)?.item_1
-                ? "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-                : "hidden"
-            }}
           </p>
         </div>
         <div
-          class="relative min-h-[30rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm"
+          class="relative min-h-[28rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm flex flex-col items-center pt-10"
         >
-          <div
-            class="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl"
-          >
-            <img
-              class="size-full object-cover object-top"
-              src="https://tailwindui.com/plus/img/component-images/bento-03-mobile-friendly.png"
-              alt=""
-            />
+          <ngx-avatars
+            size="120"
+            [value]="getItemDetails(0)?.item_1?.descuento + '%'"
+          ></ngx-avatars>
+
+          <div class="pt-7 flex flex-col space-y-4">
+            <span class="flex flex-col">
+              <span class="font-extrabold italic text-black">
+                Fecha de Inicio
+              </span>
+              <strong class="text-cyan-500 w-full px-10">
+                {{ getItemDetails(0)?.item_1?.fechaInicio | date }}
+              </strong>
+            </span>
+
+            <span class="flex flex-col">
+              <span class="font-extrabold italic text-black">
+                Fecha de Fin
+              </span>
+              <strong class="text-red-500 w-full px-10">
+                {{ getItemDetails(0)?.item_1?.fechaFin | date }}
+              </strong>
+            </span>
+          </div>
+
+          <div class="pt-7">
+            <h2>Productos aplicados al descuento</h2>
+
+            <div>
+              Nombre del producto:
+              <span
+                class="uppercase italic tracking-widest text-green-700 font-bold"
+              >
+                {{ getItemDetails(0)?.item_1?.producto.nombreProducto }}
+              </span>
+              <br />
+
+              Nombre del producto:
+              <span
+                class="uppercase italic tracking-widest text-green-700 font-bold"
+              >
+                {{ getItemDetails(0)?.item_1?.producto.precio | currency }}
+              </span>
+            </div>
           </div>
         </div>
       </div>
