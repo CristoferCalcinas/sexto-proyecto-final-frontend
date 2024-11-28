@@ -6,11 +6,12 @@ import { CarritoService } from '../../../services/carrito.service';
 import { DetalleCarritoService } from '../../../services/detalle-carrito.service';
 import { catchError, of, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { CommonModule, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [ProductCardComponent, TitleComponent],
+  imports: [ProductCardComponent, TitleComponent, CommonModule],
   templateUrl: './products-list.component.html',
   styles: ``,
 })
@@ -20,11 +21,22 @@ export default class ProductsListComponent implements OnInit {
   private carritoService = inject(CarritoService);
   private detalleCarritoService = inject(DetalleCarritoService);
 
-  public products: any[] = [];
+  public productsByCategory: any = {};
 
   ngOnInit(): void {
     this.productsService.getAllProducts().subscribe((products) => {
-      this.products = products;
+      // this.products = products;
+      // Agrupar los productos por categoría
+      this.productsByCategory = products.reduce((acc, product) => {
+        const category = product.categoria.nombreCategoria;
+
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+
+        acc[category].push(product);
+        return acc;
+      }, {});
     });
   }
 
@@ -55,5 +67,9 @@ export default class ProductsListComponent implements OnInit {
       .subscribe((resp) => {
         console.log(resp);
       });
+  }
+
+  getCategories(): string[] {
+    return Object.keys(this.productsByCategory);
   }
 }
