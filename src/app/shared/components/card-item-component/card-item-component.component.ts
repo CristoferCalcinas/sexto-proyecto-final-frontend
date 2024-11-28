@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { DetalleCarritoService } from '../../../services/detalle-carrito.service
   styles: ``,
 })
 export class CardItemComponentComponent {
+  public itemDeleted = output<number>();
   public detalle: any = input.required();
   private detalleCarritoService = inject(DetalleCarritoService);
 
@@ -28,8 +29,13 @@ export class CardItemComponentComponent {
       .subscribe();
   }
 
+  // onDeleteItem() {
+  //   console.log('onDeleteItem', this.detalle().id);
+  //   this.detalleCarritoService.deleteDetalleCarrito(this.detalle().id).subscribe();
+  // }
   onDeleteItem() {
-    console.log('onDeleteItem', this.detalle().id);
-    this.detalleCarritoService.deleteDetalleCarrito(this.detalle().id).subscribe();
+    this.detalleCarritoService.deleteDetalleCarrito(this.detalle().id).subscribe(() => {
+      this.itemDeleted.emit(this.detalle().id); // Emitimos el ID del elemento eliminado
+    });
   }
 }

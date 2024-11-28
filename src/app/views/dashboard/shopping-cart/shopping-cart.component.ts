@@ -42,11 +42,13 @@ export default class ShoppingCartComponent implements OnInit {
       });
   }
 
+  removeItem(id: number): void {
+    this.detalles = this.detalles.filter((detalle) => detalle.id !== id);
+  }
+
   get calcularTotal(): number {
-    let total = 0;
-    this.detalles.forEach((element) => {
-      total += element.cantidad * element.producto.precio;
-    });
-    return total;
+    return this.detalles.reduce((total, element) => {
+      return total + element.cantidad * element.producto.precio;
+    }, 0);
   }
 }
