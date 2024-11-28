@@ -1,5 +1,11 @@
 <shared-title-component title="Carrito de compras" />
 
+@if (isAdmin) {
+
+<ui-admin-cart></ui-admin-cart>
+
+}@else {
+
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
   @for (detalle of detalles; track $index) {
   <shared-card-item-component
@@ -16,3 +22,5 @@
 <div class="my-5">
   <shared-card-summary-component [total]="calcularTotal" />
 </div>
+
+}

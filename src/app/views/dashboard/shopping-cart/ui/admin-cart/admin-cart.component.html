@@ -1,0 +1,89 @@
+<div class="bg-gray-800 py-12 rounded-md">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-base/7 font-semibold text-orange-400">
+        Como administrador no puedes ver el carrito de compras
+      </h2>
+      <span
+        [routerLink]="['/auth/register']"
+        class="mt-2 text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl hover:text-orange-400"
+      >
+        Crear una cuenta de usuario para ver tener un carrito de compras
+      </span>
+      <p class="mt-6 text-lg/8 text-gray-300">
+        Si ya tienes una cuenta de usuario, inicia sesión para ver el carrito de
+        compras
+      </p>
+    </div>
+    <dl
+      class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base/7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-16"
+    >
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg
+            class="absolute left-1 top-1 size-5 text-orange-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.5 17a4.5 4.5 0 0 1-1.44-8.765 4.5 4.5 0 0 1 8.302-3.046 3.5 3.5 0 0 1 4.504 4.272A4 4 0 0 1 15 17H5.5Zm3.75-2.75a.75.75 0 0 0 1.5 0V9.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0l-3.25 3.5a.75.75 0 1 0 1.1 1.02l1.95-2.1v4.59Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Crear un nuevo producto.
+        </dt>
+        <dd class="inline">
+          Establece un nuevo producto en la tienda para que los usuarios puedan
+          comprarlo.
+        </dd>
+      </div>
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg
+            class="absolute left-1 top-1 size-5 text-orange-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Gestionar los usuarios.
+        </dt>
+        <dd class="inline">
+          Administra los usuarios de la tienda, crea nuevos empleados y elimina
+          los inactivos.
+        </dd>
+      </div>
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg
+            class="absolute left-1 top-1 size-5 text-orange-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Mantenimiento a los productos.
+        </dt>
+        <dd class="inline">
+          Actualiza los productos de la tienda, elimina los que ya no se
+          encuentren disponibles.
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>

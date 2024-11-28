@@ -4,6 +4,9 @@ import { CardItemComponentComponent } from '@shared/components/card-item-compone
 import { CardSummaryComponentComponent } from '../../../shared/components/card-summary-component/card-summary-component.component';
 import { ShoppingCartService } from '../../../services/shopping-cart.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { catchError, map, of } from 'rxjs';
+import { AdminCartComponent } from "./ui/admin-cart/admin-cart.component";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,14 +15,17 @@ import { Router } from '@angular/router';
     TitleComponent,
     CardItemComponentComponent,
     CardSummaryComponentComponent,
-  ],
+    AdminCartComponent
+],
   templateUrl: './shopping-cart.component.html',
   styles: ``,
 })
 export default class ShoppingCartComponent implements OnInit {
   private router = inject(Router);
   private shoppingCartService = inject(ShoppingCartService);
+  private userService = inject(UserService);
 
+  public isAdmin: boolean = false;
   public shoppingCartItems: any[] = [];
 
   public detalles: any[] = [];
@@ -39,6 +45,18 @@ export default class ShoppingCartComponent implements OnInit {
 
         this.shoppingCartItems = data;
         this.detalles = data[0].detalleCarritos;
+      });
+
+    this.userService
+      .login(localStorage.getItem('userEmail')!, 'password')
+      .pipe(
+        // Transformar la respuesta para obtener el valor booleano
+        map((user) => !user.cargo),
+        // Manejar errores y devolver `false` directamente si ocurre uno
+        catchError(() => of(false))
+      )
+      .subscribe((isAdmin) => {
+        this.isAdmin = !isAdmin;
       });
   }
 
