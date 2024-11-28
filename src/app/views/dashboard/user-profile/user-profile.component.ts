@@ -18,17 +18,20 @@ export default class UserProfileComponent implements OnInit {
   private userProfileService = inject(UserService);
 
   public userProfile: any;
-  public userEmail = localStorage.getItem('userEmail')?.split('@')[0].slice(0, 2);
+  public userEmail = localStorage
+    .getItem('userEmail')
+    ?.split('@')[0]
+    .slice(0, 2);
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('userId');
+    const userEmail = localStorage.getItem('userEmail');
 
-    if (!userId) {
+    if (!userEmail) {
       this.router.navigate(['/auth/login']);
       return;
     }
 
-    this.userProfileService.getUserProfileById(+userId!).subscribe((data) => {
+    this.userProfileService.getUserByEmail(userEmail).subscribe((data) => {
       this.userProfile = data;
     });
   }

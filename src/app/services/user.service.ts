@@ -25,4 +25,8 @@ export class UserService {
   register(data: any) {
     return this.http.post<any>(`${this.API_URL}/Cliente`, data);
   }
+
+  getUserByEmail(email: string) {
+    return this.http.get<any>(`${this.API_URL}/Cliente/email/${email}`);
+  }
 }

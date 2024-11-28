@@ -8,7 +8,11 @@
           <ngx-avatars [value]="userEmail" size="120"></ngx-avatars>
 
           <h3 class="mt-5 text-2xl font-bold">
-            {{ userProfile?.nombreCliente }}
+            {{
+              userProfile?.nombreCliente ||
+                userProfile?.nombreEmpleado ||
+                "Usuario"
+            }}
           </h3>
 
           <span>
@@ -63,10 +67,17 @@
 
       <div class="px-4 py-5 sm:p-6">
         <div class="flex items-center justify-center">
+          @if (userProfile?.fechaRegistro) {
           <span class="italic"> Fecha de Registro: </span>
           <h4 class="font-normal tracking-wider text-lg px-4">
             {{ userProfile?.fechaRegistro }}
           </h4>
+          } @else {
+          <span class="italic"> Fecha de Contratación: </span>
+          <h4 class="font-normal tracking-wider text-lg px-4">
+            {{ userProfile?.fechaContratacion }}
+          </h4>
+          }
         </div>
       </div>
     </div>
