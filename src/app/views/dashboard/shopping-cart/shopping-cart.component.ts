@@ -6,7 +6,7 @@ import { ShoppingCartService } from '../../../services/shopping-cart.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { catchError, map, of } from 'rxjs';
-import { AdminCartComponent } from "./ui/admin-cart/admin-cart.component";
+import { AdminCartComponent } from './ui/admin-cart/admin-cart.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,8 +15,8 @@ import { AdminCartComponent } from "./ui/admin-cart/admin-cart.component";
     TitleComponent,
     CardItemComponentComponent,
     CardSummaryComponentComponent,
-    AdminCartComponent
-],
+    AdminCartComponent,
+  ],
   templateUrl: './shopping-cart.component.html',
   styles: ``,
 })
@@ -68,5 +68,17 @@ export default class ShoppingCartComponent implements OnInit {
     return this.detalles.reduce((total, element) => {
       return total + element.cantidad * element.producto.precio;
     }, 0);
+  }
+
+  onProceedToPayment(confirm: boolean): void {
+    console.log(confirm);
+    if (!confirm) return;
+
+    console.log(this.detalles);
+    const cantidades = this.detalles.map((detalle) => ({
+      cantidad: detalle.cantidad,
+      productoId: detalle.producto.id,
+    }));
+    console.log(cantidades);
   }
 }

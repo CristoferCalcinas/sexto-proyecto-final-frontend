@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
@@ -12,4 +12,9 @@ import { RouterModule } from '@angular/router';
 })
 export class CardSummaryComponentComponent {
   public total: any = input.required();
+  public proceedToPayment = output<boolean>();
+
+  onProceedToPayment() {
+    this.proceedToPayment.emit(true);
+  }
 }

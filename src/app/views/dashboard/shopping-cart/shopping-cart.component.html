@@ -20,7 +20,10 @@
 </div>
 
 <div class="my-5">
-  <shared-card-summary-component [total]="calcularTotal" />
+  <shared-card-summary-component
+    (proceedToPayment)="onProceedToPayment($event)"
+    [total]="calcularTotal"
+  />
 </div>
 
 }

@@ -12,6 +12,7 @@ import { DialogCategoryComponent } from './ui/dialog-category/dialog-category.co
 import { DialogSupplierComponent } from './ui/dialog-supplier/dialog-supplier.component';
 import { DeleteCategoryDialogComponent } from './ui/delete-category-dialog/delete-category-dialog.component';
 import { DeleteSupplierDialogComponent } from './ui/delete-supplier-dialog/delete-supplier-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -27,6 +28,7 @@ import { DeleteSupplierDialogComponent } from './ui/delete-supplier-dialog/delet
 })
 export default class AddProductComponent {
   private fb = inject(FormBuilder);
+  private router = inject(Router)
   private supplierService = inject(SupplierService);
   private categoryService = inject(CategoryService);
   private productService = inject(ProductsService);
@@ -62,6 +64,7 @@ export default class AddProductComponent {
     };
     this.productService.addProduct(transformedProduct).subscribe((res) => {
       console.log(res);
+      this.router.navigate(['admin/edit-product', res.id])
     });
 
     this.myForm.reset();
