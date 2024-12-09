@@ -48,15 +48,15 @@ export default class ShoppingCartComponent implements OnInit {
       });
 
     this.userService
-      .login(localStorage.getItem('userEmail')!, 'password')
+      .getUserById(+userId)
       .pipe(
         // Transformar la respuesta para obtener el valor booleano
-        map((user) => !user.cargo),
+        map((user) => user.rol.nombreRol),
         // Manejar errores y devolver `false` directamente si ocurre uno
         catchError(() => of(false))
       )
       .subscribe((isAdmin) => {
-        this.isAdmin = !isAdmin;
+        this.isAdmin = !(isAdmin === 'Cliente');
       });
   }
 
