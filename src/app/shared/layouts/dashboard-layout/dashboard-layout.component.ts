@@ -134,7 +134,7 @@ export class DashboardLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService
-      .login(localStorage.getItem('userEmail')!, 'password')
+      .getUserById(+(localStorage.getItem('userId')!))
       .pipe(
         // Transformar la respuesta para obtener el valor booleano
         map((user) => !user.cargo),

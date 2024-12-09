@@ -32,4 +32,8 @@ export class UserService {
   getUserByEmail(email: string) {
     return this.http.get<any>(`${this.API_URL}/Cliente/email/${email}`);
   }
+
+  getUserById(id: number) {
+    return this.http.get<any>(`${this.API_URL}/Usuario/${id}`);
+  }
 }
