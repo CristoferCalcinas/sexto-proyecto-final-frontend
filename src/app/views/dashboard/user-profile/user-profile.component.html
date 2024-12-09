@@ -9,9 +9,7 @@
 
           <h3 class="mt-5 text-2xl font-bold">
             {{
-              userProfile?.nombreCliente ||
-                userProfile?.nombreEmpleado ||
-                "Usuario"
+            userProfile?.nombreUsuario || "Usuario"
             }}
           </h3>
 
@@ -21,16 +19,12 @@
         </div>
 
         <div class="w-full mt-5 flex flex-col space-y-5">
-          <button
-            type="button"
-            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
+          <button type="button"
+            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             Editar perfil
           </button>
-          <button
-            type="button"
-            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
+          <button type="button"
+            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             Cambiar contraseña
           </button>
         </div>
@@ -39,27 +33,21 @@
   </div>
 
   <div class="col-span-1 sm:col-span-2 md:col-span-7">
-    <div class="overflow-hidden rounded-lg bg-white shadow">
+    <div class="overflow-hidden rounded-lg bg-white shadow h-full flex flex-col justify-between">
       <div class="px-4 py-5 sm:p-6">
-        <h3 class="text-lg font-semibold">Resumen de la cuenta</h3>
+        <h3 class="text-xl font-semibold">Resumen de la cuenta</h3>
 
         <div class="w-full mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
-          <button
-            type="button"
-            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
+          <button type="button"
+            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             Mis pedidos
           </button>
-          <button
-            type="button"
-            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
+          <button type="button"
+            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             Mis favoritos
           </button>
-          <button
-            type="button"
-            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
+          <button type="button"
+            class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             Preferencias
           </button>
         </div>
@@ -73,9 +61,9 @@
             {{ userProfile?.fechaRegistro }}
           </h4>
           } @else {
-          <span class="italic"> Fecha de Contratación: </span>
+          <span class="italic"> Fecha de Creación: </span>
           <h4 class="font-normal tracking-wider text-lg px-4">
-            {{ userProfile?.fechaContratacion }}
+            2000-01-01
           </h4>
           }
         </div>
@@ -90,58 +78,36 @@
       <div class="px-4 sm:px-6 lg:px-8">
         <div class="flow-root">
           <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div
-              class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
-            >
+            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
               <table class="min-w-full divide-y divide-gray-300">
                 <thead>
                   <tr>
-                    <th
-                      scope="col"
-                      class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
-                    >
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                       ID Pedido
                     </th>
-                    <th
-                      scope="col"
-                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                       Fecha
                     </th>
-                    <th
-                      scope="col"
-                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                       Estado
                     </th>
-                    <th
-                      scope="col"
-                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                    >
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                       Total
                     </th>
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                   <tr>
-                    <td
-                      class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
-                    >
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                       ORD-001
                     </td>
-                    <td
-                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                    >
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       2024-03-15
                     </td>
-                    <td
-                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                    >
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       Entregado
                     </td>
-                    <td
-                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                    >
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       $45.99
                     </td>
                   </tr>
@@ -149,24 +115,16 @@
                   <!-- More people... -->
 
                   <tr>
-                    <td
-                      class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
-                    >
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                       ORD-001
                     </td>
-                    <td
-                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                    >
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       2024-03-15
                     </td>
-                    <td
-                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                    >
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       Entregado
                     </td>
-                    <td
-                      class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                    >
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       $45.99
                     </td>
                   </tr>

@@ -24,14 +24,14 @@ export default class UserProfileComponent implements OnInit {
     .slice(0, 2);
 
   ngOnInit(): void {
-    const userEmail = localStorage.getItem('userEmail');
+    const userId = localStorage.getItem('userId');
 
-    if (!userEmail) {
+    if (!userId) {
       this.router.navigate(['/auth/login']);
       return;
     }
 
-    this.userProfileService.getUserByEmail(userEmail).subscribe((data) => {
+    this.userProfileService.getUserById(+userId).subscribe((data) => {
       this.userProfile = data;
     });
   }
