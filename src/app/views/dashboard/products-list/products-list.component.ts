@@ -4,9 +4,9 @@ import { TitleComponent } from '@shared/components/title-component/title-compone
 import { ProductsService } from '../../../services/products-list.service';
 import { CarritoService } from '../../../services/carrito.service';
 import { DetalleCarritoService } from '../../../services/detalle-carrito.service';
-import { catchError, firstValueFrom, of, switchMap, tap } from 'rxjs';
+import { catchError, firstValueFrom, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -79,13 +79,13 @@ export default class ProductsListComponent implements OnInit {
 
   async isNotAdmin(): Promise<boolean> {
     try {
-      const userEmail = localStorage.getItem('userEmail');
-      if (!userEmail) return false;
+      const userId = localStorage.getItem('userId');
+      if (!userId) return false;
 
       const user = await firstValueFrom(
-        this.userService.getUserByEmail(userEmail)
+        this.userService.getUserById(+userId)
       );
-      return !user.cargo;
+      return user.rol.nombreRol === 'Cliente';
     } catch (error) {
       console.error('Error checking admin status', error);
       return false;
