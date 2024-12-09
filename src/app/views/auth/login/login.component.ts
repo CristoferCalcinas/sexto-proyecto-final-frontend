@@ -60,22 +60,11 @@ export default class LoginComponent {
           if (!resp) return;
 
           // Guardar información esencial en localStorage
-          localStorage.setItem('userId', resp.id.toString());
-          localStorage.setItem('userEmail', resp.correoElectronico);
-
-          // Opcional: Guardar información adicional como JSON
-          // localStorage.setItem(
-          //   'userFullData',
-          //   JSON.stringify({
-          //     id: resp.id,
-          //     nombreCliente: resp.nombreCliente,
-          //     correoElectronico: resp.correoElectronico,
-          //     fechaRegistro: resp.fechaRegistro,
-          //   })
-          // );
+          localStorage.setItem('userId', resp.usuario.id.toString());
+          localStorage.setItem('userEmail', resp.usuario.correoElectronico);
 
           // Información sensible NO debe guardarse en localStorage
-          console.log('Inicio de sesión exitoso');
+          // console.log(resp.mensaje)
         }),
         catchError((error) => {
           // Manejo de errores de inicio de sesión

@@ -19,7 +19,10 @@ export class UserService {
 
   login(email: string, password: string) {
     // console.log(password);
-    return this.http.get<any>(`${this.API_URL}/Cliente/email/${email}`);
+    return this.http.post<any>(`${this.API_URL}/Usuario/login`, {
+      correoElectronico: email,
+      password: password,
+    });
   }
 
   register(data: any) {
