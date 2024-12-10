@@ -8,6 +8,7 @@ import {
 import { UserListComponent } from './ui/user-list/user-list.component';
 import { EmployeesListComponent } from './ui/employees-list/employees-list.component';
 import { UserService } from '../../../services/user.service';
+import { User } from '@models/user.interface';
 
 @Component({
   selector: 'app-user-management',
@@ -18,39 +19,19 @@ import { UserService } from '../../../services/user.service';
 })
 export default class UserManagementComponent implements OnInit {
   private userService = inject(UserService);
-  public visibleUserList = true;
-  public visibleEmployeeList = true;
+  public isVisibleUserList = true;
+  public isVisibleAdminList = true;
+  public isVisibleSupplierList = true;
 
-  public suppliers: any[] = [];
-  public admins: any[] = [];
-  public customers: any[] = [];
+  public allUsers: User[] = [];
+
+  getUsersByRole(role: string): User[] {
+    return this.allUsers.filter((user) => user.rol.nombreRol === role);
+  }
 
   ngOnInit(): void {
-    // Tener todos los usuarios en un solo arreglo
-    const users = this.userService.getAllUsers().subscribe((users) => {
-
-      const categorizedUsers = {
-        suppliers: [] as any[],
-        admins: [] as any[],
-        customers: [] as any[],
-      };
-
-      // Filtrar usuarios por rol
-      users.forEach((user: any) => {
-        if (user.rol.nombreRol === 'Proveedor') {
-          categorizedUsers.suppliers.push(user);
-        } else if (user.rol.nombreRol === 'Administrador') {
-          categorizedUsers.admins.push(user);
-        } else {
-          categorizedUsers.customers.push(user);
-        }
-      });
-
-      // Asignar a las propiedades de la clase
-      this.suppliers = categorizedUsers.suppliers;
-      this.admins = categorizedUsers.admins;
-      this.customers = categorizedUsers.customers;
-
+    this.userService.getAllUsers().subscribe((users) => {
+      this.allUsers = users;
     });
   }
 }

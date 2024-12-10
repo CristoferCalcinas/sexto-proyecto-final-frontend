@@ -1,21 +1,15 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { EmployeeService } from '../../../../../services/employee.service';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'ui-employees-list',
   standalone: true,
-  imports: [CommonModule, AsyncPipe],
+  imports: [CommonModule],
   templateUrl: './employees-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesListComponent {
-  private employeeService = inject(EmployeeService);
-  public employees = this.employeeService.getAllEmployees();
-
-  printTest() {
-    console.log(this.employees.subscribe((a) => console.log(a)));
-  }
+  public employees: any = input.required();
 
   optionsEmployee(id: any) {
     console.log(id);
