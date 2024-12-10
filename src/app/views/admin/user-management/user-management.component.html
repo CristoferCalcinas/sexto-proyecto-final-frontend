@@ -1,24 +1,29 @@
 <div class="mb-5 ml-5 space-x-5">
-  <button (click)="isVisibleUserList = !isVisibleUserList"
-    class="rounded-full bg-cyan-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600">
-    {{ isVisibleUserList ? "Ocular" : "Mostrar" }} la lista de usuarios
+  <button (click)="isVisibleUserList.set(!isVisibleUserList())"
+    [ngClass]="{ 'bg-cyan-600 hover:bg-cyan-400 focus-visible:outline-cyan-600': isVisibleUserList(), 'bg-red-600 hover:bg-red-400 focus-visible:outline-red-600': !isVisibleUserList() }"
+    class="rounded-full px-3.5 py-2 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">
+    {{ isVisibleUserList() ? "Ocultar" : "Mostrar" }} la lista de usuarios
   </button>
-  <button (click)="isVisibleAdminList = !isVisibleAdminList"
+  <button (click)="isVisibleAdminList.set(!isVisibleAdminList())"
+    [ngClass]="{ 'bg-cyan-600 hover:bg-cyan-400 focus-visible:outline-cyan-600': isVisibleAdminList(), 'bg-red-600 hover:bg-red-400 focus-visible:outline-red-600': !isVisibleAdminList() }"
     class="rounded-full bg-cyan-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600">
-    {{ isVisibleAdminList ? "Ocular" : "Mostrar" }} la lista de administradores
+    {{ isVisibleAdminList() ? "Ocultar" : "Mostrar" }} la lista de administradores
   </button>
-  <button (click)="isVisibleAdminList = !isVisibleAdminList"
+  <button (click)="isVisibleSupplierList.set(!isVisibleSupplierList())"
+    [ngClass]="{ 'bg-cyan-600 hover:bg-cyan-400 focus-visible:outline-cyan-600': isVisibleSupplierList(), 'bg-red-600 hover:bg-red-400 focus-visible:outline-red-600': !isVisibleSupplierList() }"
     class="rounded-full bg-cyan-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600">
-    {{ isVisibleSupplierList ? "Ocular" : "Mostrar" }} la lista de proveedores
+    {{ isVisibleSupplierList() ? "Ocultar" : "Mostrar" }} la lista de proveedores
   </button>
 </div>
 
 <div>
-  @if (isVisibleUserList) {
+  @if (isVisibleUserList() && getUsersByRole('Cliente').length > 0) {
   <ui-user-list [customers]="getUsersByRole('Cliente')"></ui-user-list>
-  }@if (isVisibleAdminList) {
+  }
+  @if (isVisibleAdminList() && getUsersByRole('Administrador').length > 0) {
   <ui-employees-list [employees]="getUsersByRole('Administrador')"></ui-employees-list>
-  }@if (isVisibleSupplierList) {
+  }
+  @if (isVisibleSupplierList() && getUsersByRole('Proveedor').length > 0) {
   <ui-employees-list [employees]="getUsersByRole('Proveedor')"></ui-employees-list>
   }
 </div>
