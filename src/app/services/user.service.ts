@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environments } from '../../environments/environments';
 import { catchError, of } from 'rxjs';
+import { User } from '@models/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -35,5 +36,11 @@ export class UserService {
 
   getUserById(id: number) {
     return this.http.get<any>(`${this.API_URL}/Usuario/${id}`);
+  }
+
+  chageRoleToUser(id: number) {
+    return this.http.patch<User>(`${this.API_URL}/Usuario`, {
+      userId: id,
+    });
   }
 }

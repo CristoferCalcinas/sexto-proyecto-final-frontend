@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { UserService } from '../../../../../services/user.service';
 
 @Component({
   selector: 'ui-employees-list',
@@ -11,8 +12,13 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 export class EmployeesListComponent {
   public title = input.required<string>();
   public employees: any = input.required();
+  private userService = inject(UserService);
 
-  optionsEmployee(id: any) {
+
+  changeEmployeeToUser(id: any) {
     console.log(id);
+    this.userService.chageRoleToUser(id).subscribe((res) => {
+      console.log(res);
+    });
   }
 }
