@@ -42,7 +42,7 @@ export default class UserManagementComponent implements OnInit {
         // Activar automáticamente las listas si hay usuarios en cada categoría
         this.isVisibleUserList.set(this.getUsersByRole('Cliente').length > 0);
         this.isVisibleAdminList.set(this.getUsersByRole('Administrador').length > 0);
-        this.isVisibleSupplierList.set(this.getUsersByRole('Proveedor').length > 0);
+        this.isVisibleSupplierList.set(this.getUsersByRole('Empleado').length > 0);
       }),
       catchError((err) => {
         console.error('Error al cargar usuarios', err);
