@@ -41,7 +41,7 @@
               <span>{{ employee.correoElectronico }} /
                 {{ employee.telefono }}</span>
               <span class="hidden sm:inline">·</span>
-              <span>{{ employee.cargo }}</span>
+              <span>{{ employee.rol.nombreRol }}</span>
             </div>
           </td>
           <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">
@@ -51,12 +51,12 @@
             {{ employee.telefono }}
           </td>
           <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">
-            {{ employee.cargo }}
+            {{ employee.rol.nombreRol }}
           </td>
           <td class="px-3 py-3.5 text-sm text-gray-500">
-            <div class="sm:hidden">{{ employee.fechaContratacion }}</div>
+            <div class="sm:hidden">{{ employee.fechaRegistro }}</div>
             <div class="hidden sm:block">
-              {{ employee.fechaContratacion | date : "EEEE, d MMMM yyyy" }}
+              {{ employee.fechaRegistro | date : "EEEE, d MMMM yyyy" }}
             </div>
           </td>
           <td class="relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
