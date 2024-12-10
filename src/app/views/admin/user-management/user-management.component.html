@@ -24,6 +24,6 @@
   <ui-employees-list [title]="'Administradores'" [employees]="getUsersByRole('Administrador')"></ui-employees-list>
   }
   @if (isVisibleSupplierList() && getUsersByRole('Proveedor').length > 0) {
-  <ui-employees-list [title]="'Proveedores'" [employees]="getUsersByRole('Proveedor')"></ui-employees-list>
+  <ui-employees-list [title]="'Proveedores y Empleados'" [employees]="getUsersByRole('Proveedor')"></ui-employees-list>
   }
 </div>
