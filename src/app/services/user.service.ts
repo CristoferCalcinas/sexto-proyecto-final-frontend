@@ -13,7 +13,7 @@ export class UserService {
 
   getAllUsers() {
     return this.http
-      .get<any>(`${this.API_URL}/Cliente`)
+      .get<any>(`${this.API_URL}/Usuario`)
       .pipe(catchError(() => of([])));
   }
 
