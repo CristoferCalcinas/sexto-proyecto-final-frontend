@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesListComponent {
+  public title = input.required<string>();
   public employees: any = input.required();
 
   optionsEmployee(id: any) {
