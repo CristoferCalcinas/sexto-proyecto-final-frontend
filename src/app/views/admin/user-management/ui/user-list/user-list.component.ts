@@ -1,6 +1,5 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { UserService } from '../../../../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'ui-user-list',
@@ -12,11 +11,7 @@ import { UserService } from '../../../../../services/user.service';
 export class UserListComponent {
   public customers: any = input.required();
 
-  private userProfileService = inject(UserService);
-  public users = this.userProfileService.getAllUsers();
-
   changeUserRole(id: any) {
     console.log(id);
-    console.log(this.customers());
   }
 }
