@@ -37,7 +37,14 @@ export default class EditProductComponent implements OnInit {
       .pipe(switchMap(({ id }) => this.productService.getProductById(id)))
       .subscribe((product) => {
         if (!product) return;
-        this.myForm.patchValue(product);
+        this.myForm.patchValue({
+          nombreProducto: product.nombreProducto,
+          descripcion: product.descripcion,
+          precio: product.precio.toString(),
+          cantidadStock: product.cantidadStock.toString(),
+          categoriaId: product.categoriaId?.toString(),
+          proveedorId: product.proveedorId?.toString(),
+        });
       });
   }
 
