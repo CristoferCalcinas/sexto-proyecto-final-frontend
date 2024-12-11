@@ -29,4 +29,13 @@
   <ui-employees-list [title]="'Empleados'" [employees]="getUsersByRole('Empleado')"
     [onEmployeeClick]="updateEmployeeRoleToClient.bind(this)" nameButton="Cambiar a Usuario"></ui-employees-list>
   }
+  @if (
+    !isVisibleAdminList() && !isVisibleSupplierList() && !isVisibleUserList()
+  ) {
+    <div>
+      <span class="py-7 font-bold text-4xl">
+        No se esta mostrando ninguna lista
+      </span>
+    </div>
+  }
 </div>
