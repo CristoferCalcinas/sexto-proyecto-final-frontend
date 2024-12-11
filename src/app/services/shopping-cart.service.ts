@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environments } from '../../environments/environments';
+
+import { environments } from '@env/environments';
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {

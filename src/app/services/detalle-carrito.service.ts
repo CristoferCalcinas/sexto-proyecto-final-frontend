@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environments } from '../../environments/environments';
 import { catchError, of } from 'rxjs';
+
+import { environments } from '@env/environments';
 
 interface DetalleCarritoChanges {
   cantidad?: number;
