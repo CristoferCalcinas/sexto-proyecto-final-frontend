@@ -62,11 +62,22 @@ export default class UserManagementComponent implements OnInit {
       .subscribe();
   }
 
+  updateClientRoleToEmployee(userId: string): void {
+    this.userService.chageRoleToEmployee(+userId).subscribe((user) => {
+      // Actualizar el signal con los nuevos datos de usuario y recargar los usuarios
+      this.loadUsers();
+    });
+  }
+
   updateEmployeeRoleToClient(userId: string): void {
     // Implement the logic to change the role of the employee to 'Cliente'
     this.userService.chageRoleToUser(+userId).subscribe((user) => {
       // Update the signal with the new user data and reload the users
       this.loadUsers();
     });
+  }
+
+  inactiveAdministrator(userId: string) {
+    console.log(userId);
   }
 }

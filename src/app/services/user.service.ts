@@ -43,4 +43,10 @@ export class UserService {
       userId: id,
     });
   }
+
+  chageRoleToEmployee(id: number) {
+    return this.http.patch<User>(`${this.API_URL}/Usuario/employee`, {
+      userId: id,
+    });
+  }
 }
