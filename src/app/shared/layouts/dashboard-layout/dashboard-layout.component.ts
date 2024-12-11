@@ -6,8 +6,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
-import { UserService } from '../../../services/user.service';
 import { catchError, map, of } from 'rxjs';
+
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'shared-dashboard-layout',

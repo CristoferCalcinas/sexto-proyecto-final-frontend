@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { TitleComponent } from '@shared/components/title-component/title-component.component';
-import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
-import { BentoGridComponentComponent } from '../../../shared/components/bento-grid-component/bento-grid-component.component';
-import { PromotionService } from '../../../services/promotion.service';
 import { RouterLink } from '@angular/router';
+
+import { TitleComponent } from '@shared/components/title-component/title-component.component';
+import { BentoGridComponentComponent } from '@shared/components/bento-grid-component/bento-grid-component.component';
+
+import { PromotionService } from '@services/promotion.service';
 
 @Component({
   selector: 'app-products-on-sale',

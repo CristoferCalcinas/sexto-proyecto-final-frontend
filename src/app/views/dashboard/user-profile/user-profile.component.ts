@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { TitleComponent } from '../../../shared/components/title-component/title-component.component';
-import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 
 // Import your AvatarModule
 import { AvatarModule } from 'ngx-avatars';
+
+import { TitleComponent } from '@shared/components/title-component/title-component.component';
+
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-user-profile',

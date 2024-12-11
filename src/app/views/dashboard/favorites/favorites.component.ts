@@ -3,12 +3,14 @@ import { AsyncPipe } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 
-import { TitleComponent } from '@shared/components/title-component/title-component.component';
-import { FavoriteCardComponentComponent } from '@shared/components/favorite-card-component/favorite-card-component.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+
 import { EmptyComponent } from "./ui/empty.component";
-import { FavoriteService } from '../../../services/favorite.service';
+import { TitleComponent } from '@shared/components/title-component/title-component.component';
+import { FavoriteCardComponentComponent } from '@shared/components/favorite-card-component/favorite-card-component.component';
+
+import { FavoriteService } from '@services/favorite.service';
 
 @Component({
   selector: 'app-favorites',

@@ -13,7 +13,8 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { MatListModule, MatSelectionList } from '@angular/material/list';
-import { SupplierService } from '../../../../../services/supplier.service';
+
+import { SupplierService } from '@services/supplier.service';
 
 @Component({
   selector: 'app-delete-supplier-dialog',

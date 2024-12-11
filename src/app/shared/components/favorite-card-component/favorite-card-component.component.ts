@@ -2,7 +2,8 @@ import { Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
-import { FavoriteService } from '../../../services/favorite.service';
+
+import { FavoriteService } from '@services/favorite.service';
 
 @Component({
   selector: 'shared-favorite-card-component',

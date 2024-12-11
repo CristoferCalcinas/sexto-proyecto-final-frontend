@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
-import { CategoryService } from '../../../services/category.service';
-import { ProductsService } from '../../../services/products-list.service';
-import { SupplierService } from '../../../services/supplier.service';
 import { DialogCategoryComponent } from './ui/dialog-category/dialog-category.component';
 import { DialogSupplierComponent } from './ui/dialog-supplier/dialog-supplier.component';
 import { DeleteCategoryDialogComponent } from './ui/delete-category-dialog/delete-category-dialog.component';
 import { DeleteSupplierDialogComponent } from './ui/delete-supplier-dialog/delete-supplier-dialog.component';
-import { Router } from '@angular/router';
+
+import { CategoryService } from '@services/category.service';
+import { ProductsService } from '@services/products-list.service';
+import { SupplierService } from '@services/supplier.service';
 
 @Component({
   selector: 'app-add-product',

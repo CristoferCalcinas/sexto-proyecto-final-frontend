@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { delay, switchMap } from 'rxjs';
-import { ProductsService } from '../../../services/products-list.service';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
+
+import { ProductsService } from '@services/products-list.service';
 
 @Component({
   selector: 'app-product',

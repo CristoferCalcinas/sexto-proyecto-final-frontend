@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TitleComponent } from "../../../shared/components/title-component/title-component.component";
+
+import { TitleComponent } from "@shared/components/title-component/title-component.component";
 
 @Component({
   selector: 'app-support',

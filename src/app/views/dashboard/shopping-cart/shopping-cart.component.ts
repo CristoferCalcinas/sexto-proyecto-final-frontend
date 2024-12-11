@@ -1,12 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TitleComponent } from '@shared/components/title-component/title-component.component';
-import { CardItemComponentComponent } from '@shared/components/card-item-component/card-item-component.component';
-import { CardSummaryComponentComponent } from '../../../shared/components/card-summary-component/card-summary-component.component';
-import { ShoppingCartService } from '../../../services/shopping-cart.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../../services/user.service';
 import { catchError, map, of } from 'rxjs';
+
 import { AdminCartComponent } from './ui/admin-cart/admin-cart.component';
+import { CardItemComponentComponent } from '@shared/components/card-item-component/card-item-component.component';
+import { CardSummaryComponentComponent } from '@shared/components/card-summary-component/card-summary-component.component';
+
+import { UserService } from '@services/user.service';
+import { ShoppingCartService } from '@services/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',

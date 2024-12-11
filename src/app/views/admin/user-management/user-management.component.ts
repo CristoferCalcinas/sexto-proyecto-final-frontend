@@ -6,11 +6,13 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
+import { catchError, tap } from 'rxjs';
+
+import { User } from '@models/user.interface';
+import { UserService } from '@services/user.service';
+
 import { UserListComponent } from './ui/user-list/user-list.component';
 import { EmployeesListComponent } from './ui/employees-list/employees-list.component';
-import { UserService } from '../../../services/user.service';
-import { User } from '@models/user.interface';
-import { catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'app-user-management',

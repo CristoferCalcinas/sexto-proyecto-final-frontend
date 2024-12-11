@@ -11,9 +11,11 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
-import { MatListModule, MatSelectionList } from '@angular/material/list';
-import { CategoryService } from '../../../../../services/category.service';
 import { AsyncPipe } from '@angular/common';
+
+import { MatListModule, MatSelectionList } from '@angular/material/list';
+
+import { CategoryService } from '@services/category.service';
 
 @Component({
   selector: 'app-delete-category-dialog',

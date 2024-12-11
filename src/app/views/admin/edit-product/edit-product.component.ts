@@ -7,7 +7,8 @@ import {
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { ProductsService } from '../../../services/products-list.service';
+
+import { ProductsService } from '@services/products-list.service';
 
 @Component({
   selector: 'app-edit-product',

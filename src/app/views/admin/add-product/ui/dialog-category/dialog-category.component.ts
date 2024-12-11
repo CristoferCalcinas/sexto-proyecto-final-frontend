@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CategoryService } from '../../../../../services/category.service';
+import { CategoryService } from '@services/category.service';
 
 @Component({
   selector: 'app-dialog-category',

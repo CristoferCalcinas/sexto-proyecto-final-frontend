@@ -10,7 +10,8 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { SupplierService } from '../../../../../services/supplier.service';
+
+import { SupplierService } from '@services/supplier.service';
 
 @Component({
   selector: 'app-dialog-supplier',

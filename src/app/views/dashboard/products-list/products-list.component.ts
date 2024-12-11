@@ -1,13 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
-import { TitleComponent } from '@shared/components/title-component/title-component.component';
-import { ProductsService } from '../../../services/products-list.service';
-import { CarritoService } from '../../../services/carrito.service';
-import { DetalleCarritoService } from '../../../services/detalle-carrito.service';
-import { catchError, firstValueFrom, of, switchMap } from 'rxjs';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
+
+import { catchError, firstValueFrom, of, switchMap } from 'rxjs';
+
+import { TitleComponent } from '@shared/components/title-component/title-component.component';
+import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
+
+import { CarritoService } from '@services/carrito.service';
+import { DetalleCarritoService } from '@services/detalle-carrito.service';
+import { ProductsService } from '@services/products-list.service';
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-products-list',

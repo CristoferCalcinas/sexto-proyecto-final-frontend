@@ -3,7 +3,8 @@ import { Component, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { DetalleCarritoService } from '../../../services/detalle-carrito.service';
+
+import { DetalleCarritoService } from '@services/detalle-carrito.service';
 
 @Component({
   selector: 'shared-card-item-component',

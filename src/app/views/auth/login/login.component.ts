@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
+import { catchError, EMPTY, tap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,8 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
-import { UserService } from '../../../services/user.service';
-import { catchError, EMPTY, tap } from 'rxjs';
+
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'view-login',

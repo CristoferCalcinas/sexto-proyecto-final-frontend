@@ -5,12 +5,14 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
-import { ProductsService } from '../../../services/products-list.service';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+
+import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
 import { DialogDeleteProductComponent } from './ui/dialog-delete-product/dialog-delete-product.component';
+
+import { ProductsService } from '@services/products-list.service';
 
 @Component({
   selector: 'app-products-list',

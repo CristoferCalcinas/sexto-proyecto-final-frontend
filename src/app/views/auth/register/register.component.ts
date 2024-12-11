@@ -1,13 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { catchError, EMPTY, tap } from 'rxjs';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { Router, RouterLink } from '@angular/router';
-import { UserService } from '../../../services/user.service';
-import { catchError, EMPTY, tap } from 'rxjs';
+
+import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
+
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'view-register',
