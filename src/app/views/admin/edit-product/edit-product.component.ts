@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 
 import { ProductsService } from '@services/products-list.service';
+import type { Product } from '@models/product.interface';
 
 @Component({
   selector: 'app-edit-product',
@@ -26,8 +27,8 @@ export default class EditProductComponent implements OnInit {
   public myForm = this.fb.group({
     nombreProducto: ['', Validators.required],
     descripcion: ['', Validators.required],
-    precio: ['', Validators.required],
-    cantidadStock: ['', Validators.required],
+    precio: ['', [Validators.required, Validators.min(0)]],
+    cantidadStock: ['', [Validators.required, Validators.min(0)]],
     categoriaId: [''],
     proveedorId: [''],
   });
@@ -52,14 +53,21 @@ export default class EditProductComponent implements OnInit {
     if (this.myForm.invalid) return;
     if (this.myForm.pristine) return;
 
-    this.productService
-      .updateProduct({
-        ...this.myForm.value,
-        id: +this.activatedRoute.snapshot.params['id'],
-      })
-      .subscribe((product) => {
-        console.log(product);
-        this.router.navigate(['/admin/products-list']);
-      });
+    const formValues = this.myForm.value;
+
+    const productToUpdate: Partial<Product> = {
+      id: +this.activatedRoute.snapshot.params['id'],
+      nombreProducto: formValues.nombreProducto || '',
+      descripcion: formValues.descripcion || '',
+      precio: formValues.precio ? +formValues.precio : 0,
+      cantidadStock: formValues.cantidadStock ? +formValues.cantidadStock : 0,
+      categoriaId: formValues.categoriaId ? +formValues.categoriaId : undefined,
+      proveedorId: formValues.proveedorId ? +formValues.proveedorId : undefined,
+    };
+
+    this.productService.updateProduct(productToUpdate).subscribe((product) => {
+      console.log(product);
+      this.router.navigate(['/admin/products-list']);
+    });
   }
 }
