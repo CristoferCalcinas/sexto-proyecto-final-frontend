@@ -34,20 +34,39 @@ export default class UserManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().pipe(
-      tap((users) => {
-        // Actualizar el signal con los usuarios cargados
-        this.usersSignal.set(users);
+    this.loadUsers();
+  }
 
-        // Activar automáticamente las listas si hay usuarios en cada categoría
-        this.isVisibleUserList.set(this.getUsersByRole('Cliente').length > 0);
-        this.isVisibleAdminList.set(this.getUsersByRole('Administrador').length > 0);
-        this.isVisibleSupplierList.set(this.getUsersByRole('Empleado').length > 0);
-      }),
-      catchError((err) => {
-        console.error('Error al cargar usuarios', err);
-        return [];
-      })
-    ).subscribe();
+  private loadUsers(): void {
+    this.userService
+      .getAllUsers()
+      .pipe(
+        tap((users) => {
+          // Actualizar el signal con los usuarios cargados
+          this.usersSignal.set(users);
+
+          // Activar automáticamente las listas si hay usuarios en cada categoría
+          this.isVisibleUserList.set(this.getUsersByRole('Cliente').length > 0);
+          this.isVisibleAdminList.set(
+            this.getUsersByRole('Administrador').length > 0
+          );
+          this.isVisibleSupplierList.set(
+            this.getUsersByRole('Empleado').length > 0
+          );
+        }),
+        catchError((err) => {
+          console.error('Error al cargar usuarios', err);
+          return [];
+        })
+      )
+      .subscribe();
+  }
+
+  updateEmployeeRoleToClient(userId: string): void {
+    // Implement the logic to change the role of the employee to 'Cliente'
+    this.userService.chageRoleToUser(+userId).subscribe((user) => {
+      // Update the signal with the new user data and reload the users
+      this.loadUsers();
+    });
   }
 }
