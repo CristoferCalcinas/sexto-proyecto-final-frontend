@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 export class EmployeesListComponent {
   public title = input.required<string>();
   public employees: any = input.required();
+  public nameButton = input.required<string>();
   public onEmployeeClick = input<(id: string) => void>();
 
   changeEmployeeToUser(id: string) {
