@@ -18,7 +18,7 @@
 
 <div>
   @if (isVisibleUserList() && getUsersByRole('Cliente').length > 0) {
-  <ui-user-list [customers]="getUsersByRole('Cliente')"></ui-user-list>
+  <ui-user-list [customers]="getUsersByRole('Cliente')" [onUserClick]="updateClientRoleToEmployee.bind(this)"></ui-user-list>
   }
   @if (isVisibleAdminList() && getUsersByRole('Administrador').length > 0) {
   <ui-employees-list [title]="'Administradores'" [employees]="getUsersByRole('Administrador')"

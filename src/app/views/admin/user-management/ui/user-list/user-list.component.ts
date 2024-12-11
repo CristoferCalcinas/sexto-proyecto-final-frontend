@@ -10,8 +10,12 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class UserListComponent {
   public customers: any = input.required();
+  public onUserClick = input<(id: string) => void>();
 
   changeUserRole(id: any) {
-    console.log(id);
+    const handleClick = this.onUserClick();
+    if (handleClick) {
+      handleClick(id);
+    }
   }
 }
