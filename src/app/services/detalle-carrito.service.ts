@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, of } from 'rxjs';
 
 import { environments } from '@env/environments';
+import { ShoppingCardDetail } from '@models/carrito.interface';
 
 interface DetalleCarritoChanges {
   cantidad?: number;
@@ -10,12 +11,12 @@ interface DetalleCarritoChanges {
 
 @Injectable({ providedIn: 'root' })
 export class DetalleCarritoService {
-  private readonly API_URL = environments.baseUrl;
+  private readonly API_URL = `${environments.baseUrl}/DetalleCarrito`;
   private http = inject(HttpClient);
 
   patchDetalleCarrito(id: number, changes: DetalleCarritoChanges) {
     return this.http
-      .patch(`${this.API_URL}/DetalleCarrito/${id}`, changes)
+      .patch<ShoppingCardDetail>(`${this.API_URL}/${id}`, changes)
       .pipe(catchError(() => of([])));
   }
 
@@ -32,13 +33,13 @@ export class DetalleCarritoService {
       precioUnitario,
     };
 
-    return this.http.post<any>(
-      `${this.API_URL}/DetalleCarrito`,
+    return this.http.post<ShoppingCardDetail>(
+      `${this.API_URL}`,
       detalleCarritoBody
     );
   }
 
   deleteDetalleCarrito(id: number) {
-    return this.http.delete(`${this.API_URL}/DetalleCarrito/${id}`);
+    return this.http.delete<ShoppingCardDetail>(`${this.API_URL}/${id}`);
   }
 }
