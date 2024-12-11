@@ -49,4 +49,10 @@ export class UserService {
       userId: id,
     });
   }
+
+  changeToInactive(id: number) {
+    return this.http.patch<User>(`${this.API_URL}/Usuario/inactive`, {
+      userId: id,
+    });
+  }
 }

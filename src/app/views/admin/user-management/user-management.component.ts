@@ -79,5 +79,8 @@ export default class UserManagementComponent implements OnInit {
 
   inactiveAdministrator(userId: string) {
     console.log(userId);
+    this.userService.changeToInactive(+userId).subscribe((user) => {
+      this.loadUsers();
+    });
   }
 }

@@ -18,11 +18,12 @@
 
 <div>
   @if (isVisibleUserList() && getUsersByRole('Cliente').length > 0) {
-  <ui-user-list [customers]="getUsersByRole('Cliente')" [onUserClick]="updateClientRoleToEmployee.bind(this)"></ui-user-list>
+  <ui-user-list [customers]="getUsersByRole('Cliente')"
+    [onUserClick]="updateClientRoleToEmployee.bind(this)"></ui-user-list>
   }
   @if (isVisibleAdminList() && getUsersByRole('Administrador').length > 0) {
   <ui-employees-list [title]="'Administradores'" [employees]="getUsersByRole('Administrador')"
-    nameButton="Admin Inactivo"></ui-employees-list>
+    [onEmployeeClick]="inactiveAdministrator.bind(this)" nameButton="Admin Inactivo"></ui-employees-list>
   }
   @if (isVisibleSupplierList() && getUsersByRole('Empleado').length > 0) {
   <ui-employees-list [title]="'Empleados'" [employees]="getUsersByRole('Empleado')"
