@@ -17,12 +17,16 @@ export class CategoryService {
   }
 
   addCategory(category: any) {
-    return this.http.post<Category>(`${this.API_URL}`, category);
+    return this.http
+      .post<Category>(`${this.API_URL}`, category)
+      .pipe(catchError(() => of(null)));
   }
 
   deleteCategories(ids: number[]) {
-    return this.http.delete<Category>(`${this.API_URL}/batch`, {
-      body: ids,
-    });
+    return this.http
+      .delete<Category>(`${this.API_URL}/batch`, {
+        body: ids,
+      })
+      .pipe(catchError(() => of(null)));
   }
 }
