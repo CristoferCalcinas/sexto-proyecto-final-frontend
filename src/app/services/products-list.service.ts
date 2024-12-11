@@ -3,37 +3,38 @@ import { inject, Injectable } from '@angular/core';
 import { catchError, of } from 'rxjs';
 
 import { environments } from '@env/environments';
+import { Product } from '@models/product.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  private readonly API_URL = environments.baseUrl;
+  private readonly API_URL = `${environments.baseUrl}/Productos`;
   private http = inject(HttpClient);
 
   getAllProducts() {
-    return this.http.get<any[]>(`${this.API_URL}/Productos`);
+    return this.http.get<Product[]>(`${this.API_URL}`);
   }
 
   getProductsByName(name: string) {
     return this.http
-      .get<any[]>(`${this.API_URL}/Productos/search/${name}`)
+      .get<Product[]>(`${this.API_URL}/search/${name}`)
       .pipe(catchError(() => of([])));
   }
 
   getProductById(id: string) {
     return this.http
-      .get<any>(`${this.API_URL}/Productos/${id}`)
+      .get<Product>(`${this.API_URL}/${id}`)
       .pipe(catchError(() => of(null)));
   }
 
   addProduct(product: any) {
-    return this.http.post<any>(`${this.API_URL}/Productos`, product);
+    return this.http.post<Product>(`${this.API_URL}`, product);
   }
 
   updateProduct(product: any) {
-    return this.http.put<any>(`${this.API_URL}/Productos`, product);
+    return this.http.put<Product>(`${this.API_URL}`, product);
   }
 
   deleteProduct(id: string) {
-    return this.http.delete<any>(`${this.API_URL}/Productos/${id}`);
+    return this.http.delete<Product>(`${this.API_URL}/${id}`);
   }
 }

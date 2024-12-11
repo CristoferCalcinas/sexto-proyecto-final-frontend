@@ -25,14 +25,14 @@ export default class ProductsListComponent implements OnInit {
   private carritoService = inject(CarritoService);
   private detalleCarritoService = inject(DetalleCarritoService);
   private userService = inject(UserService);
-  public productsByCategory: any = {};
+  public productsByCategory: { [key: string]: any[] } = {};
   public isAdmin: boolean = false;
 
   async ngOnInit(): Promise<void> {
     this.productsService.getAllProducts().subscribe((products) => {
       // this.products = products;
       // Agrupar los productos por categoría
-      this.productsByCategory = products.reduce((acc, product) => {
+      this.productsByCategory = products.reduce((acc: { [key: string]: any[] }, product) => {
         const category = product.categoria.nombreCategoria;
 
         if (!acc[category]) {
