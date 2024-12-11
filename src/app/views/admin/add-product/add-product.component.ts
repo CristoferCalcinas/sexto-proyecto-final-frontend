@@ -12,7 +12,7 @@ import { DeleteCategoryDialogComponent } from './ui/delete-category-dialog/delet
 import { DeleteSupplierDialogComponent } from './ui/delete-supplier-dialog/delete-supplier-dialog.component';
 
 import { CategoryService } from '@services/category.service';
-import { ProductsService } from '@services/products-list.service';
+import { ProductsService } from '@services/products.service';
 import { SupplierService } from '@services/supplier.service';
 
 @Component({
