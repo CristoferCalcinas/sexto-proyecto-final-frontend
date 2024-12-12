@@ -10,6 +10,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CategoryService } from '@services/category.service';
+import { Category } from '../../../../../models/category.interface';
 
 @Component({
   selector: 'app-dialog-category',
@@ -38,7 +39,9 @@ export class DialogCategoryComponent {
   createCategory() {
     if (!this.myForm.valid) return;
 
-    this.categoryService.addCategory(this.myForm.value).subscribe((res) => {
+    const categoryToCreate = this.myForm.value as Partial<Category>;
+
+    this.categoryService.addCategory(categoryToCreate).subscribe((res) => {
       console.log(res);
       this.dialogRef.close(res); // Enviamos la categoría creada
     });

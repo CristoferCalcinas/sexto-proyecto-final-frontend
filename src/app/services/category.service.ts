@@ -16,7 +16,7 @@ export class CategoryService {
       .pipe(catchError(() => of([])));
   }
 
-  addCategory(category: any) {
+  addCategory(category: Partial<Category>) {
     return this.http
       .post<Category>(`${this.API_URL}`, category)
       .pipe(catchError(() => of(null)));
