@@ -12,6 +12,8 @@ import { DetalleCarritoService } from '@services/detalle-carrito.service';
 import { ProductsService } from '@services/products.service';
 import { UserService } from '@services/user.service';
 
+import { Product } from '@models/product.interface';
+
 @Component({
   selector: 'app-products-list',
   standalone: true,
@@ -25,14 +27,14 @@ export default class ProductsListComponent implements OnInit {
   private carritoService = inject(CarritoService);
   private detalleCarritoService = inject(DetalleCarritoService);
   private userService = inject(UserService);
-  public productsByCategory: { [key: string]: any[] } = {};
+  public productsByCategory: { [key: string]: Product[] } = {};
   public isAdmin: boolean = false;
 
   async ngOnInit(): Promise<void> {
     this.productsService.getAllProducts().subscribe((products) => {
       // this.products = products;
       // Agrupar los productos por categoría
-      this.productsByCategory = products.reduce((acc: { [key: string]: any[] }, product) => {
+      this.productsByCategory = products.reduce((acc: { [key: string]: Product[] }, product) => {
         const category = product.categoria.nombreCategoria;
 
         if (!acc[category]) {
@@ -47,7 +49,7 @@ export default class ProductsListComponent implements OnInit {
     this.isAdmin = !(await this.isNotAdmin());
   }
 
-  addProductToCart(product: any) {
+  addProductToCart(product: Product): void {
     const userId = localStorage.getItem('userId');
 
     if (!userId) {
