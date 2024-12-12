@@ -62,7 +62,6 @@ export default class ProductsListComponent implements OnInit {
           this.detalleCarritoService.createDetalleCarrito(
             carrito.id,
             product.id,
-            1,
             product.precio
           )
         ),

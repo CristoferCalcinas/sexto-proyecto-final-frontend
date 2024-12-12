@@ -22,16 +22,16 @@ export class DetalleCarritoService {
 
   createDetalleCarrito(
     carritoId: number,
-    productoId: any,
-    cantidad: any,
-    precioUnitario: any
+    productoId: number,
+    precioUnitario: number,
+    cantidad: number = 1
   ) {
     const detalleCarritoBody = {
       carritoId,
       productoId,
       cantidad,
       precioUnitario,
-    };
+    } as Partial<ShoppingCardDetail>;
 
     return this.http.post<ShoppingCardDetail>(
       `${this.API_URL}`,
