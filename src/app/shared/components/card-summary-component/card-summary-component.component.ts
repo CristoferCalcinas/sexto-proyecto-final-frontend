@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './card-summary-component.component.html',
   styles: ``,
 })
-export class CardSummaryComponentComponent {
+export class CardSummaryComponent {
   public total: any = input.required();
   public proceedToPayment = output<boolean>();
 
