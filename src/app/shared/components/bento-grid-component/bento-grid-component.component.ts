@@ -10,7 +10,7 @@ import { AvatarModule } from 'ngx-avatars';
   templateUrl: './bento-grid-component.component.html',
   styles: ``,
 })
-export class BentoGridComponentComponent implements OnChanges {
+export class BentoGridComponent implements OnChanges {
   public promotions: any = input.required();
   public bentoGridItems: any[] = [];
 
