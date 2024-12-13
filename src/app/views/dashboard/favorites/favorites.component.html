@@ -2,8 +2,8 @@
 
 @if (!(favoriteService.getFavoriteCount() === 0)) {
 <div class="flex flex-wrap justify-center items-center gap-10 mt-3">
-  @for (option of favoriteList(); track $index) {
-  <shared-favorite-card-component [itemId]="$index" />
+  @for (favorite of favoriteList(); track $index) {
+  <shared-favorite-card-component [itemId]="favorite" />
   }
 </div>
 }@else {

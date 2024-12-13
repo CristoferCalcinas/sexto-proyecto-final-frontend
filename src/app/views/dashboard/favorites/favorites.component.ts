@@ -15,5 +15,5 @@ import { FavoriteService } from '@services/favorite.service';
 })
 export default class FavoritesComponent {
   public favoriteService = inject(FavoriteService);
-  favoriteList = this.favoriteService.wishList;
+  public favoriteList = this.favoriteService.wishList;
 }

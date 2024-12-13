@@ -13,12 +13,10 @@ import { FavoriteService } from '@services/favorite.service';
   styles: ``,
 })
 export class FavoriteCardComponent {
-  public itemId = input.required();
-  public listaService = inject(FavoriteService);
+  public itemId = input.required<number>();
+  public favoriteService = inject(FavoriteService);
 
   deleteFavorite() {
-    console.log('deleteFavorite');
-    this.listaService.removeFromWishList(this.itemId() as number);
-    console.log(this.listaService.wishList);
+    this.favoriteService.removeFromWishList(this.itemId());
   }
 }
