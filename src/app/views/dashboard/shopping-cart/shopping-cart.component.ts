@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, map, of } from 'rxjs';
 
 import { AdminCartComponent } from './ui/admin-cart/admin-cart.component';
-import { CardItemComponentComponent } from '@shared/components/card-item-component/card-item-component.component';
+import { CardItemComponent } from '@shared/components/card-item-component/card-item-component.component';
 import { CardSummaryComponentComponent } from '@shared/components/card-summary-component/card-summary-component.component';
 
 import { UserService } from '@services/user.service';
@@ -15,7 +15,7 @@ import { ShoppingCartService } from '@services/shopping-cart.service';
   standalone: true,
   imports: [
     TitleComponent,
-    CardItemComponentComponent,
+    CardItemComponent,
     CardSummaryComponentComponent,
     AdminCartComponent,
   ],

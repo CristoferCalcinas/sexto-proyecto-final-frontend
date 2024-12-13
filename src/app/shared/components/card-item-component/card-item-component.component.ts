@@ -13,7 +13,7 @@ import { DetalleCarritoService } from '@services/detalle-carrito.service';
   templateUrl: './card-item-component.component.html',
   styles: ``,
 })
-export class CardItemComponentComponent {
+export class CardItemComponent {
   public itemDeleted = output<number>();
   public detalle: any = input.required();
   private detalleCarritoService = inject(DetalleCarritoService);
