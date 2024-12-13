@@ -18,7 +18,7 @@ export class FavoriteCardComponentComponent {
 
   deleteFavorite() {
     console.log('deleteFavorite');
-    this.listaService.deleteFavorite(this.itemId() as number);
+    this.listaService.removeFromWishList(this.itemId() as number);
     console.log(this.listaService.wishList);
   }
 }
