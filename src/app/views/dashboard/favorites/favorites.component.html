@@ -1,11 +1,11 @@
 <shared-title-component title="Tus favoritos" />
 
-@if (!options.length) {
-<empty-component />
-}@else {
+@if (!(favoriteService.getFavoriteCount() === 0)) {
 <div class="flex flex-wrap justify-center items-center gap-10 mt-3">
   @for (option of favoriteList(); track $index) {
   <shared-favorite-card-component [itemId]="$index" />
   }
 </div>
+}@else {
+<empty-component />
 }
