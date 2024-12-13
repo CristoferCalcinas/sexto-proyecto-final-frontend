@@ -12,7 +12,7 @@ import { FavoriteService } from '@services/favorite.service';
   templateUrl: './favorite-card-component.component.html',
   styles: ``,
 })
-export class FavoriteCardComponentComponent {
+export class FavoriteCardComponent {
   public itemId = input.required();
   public listaService = inject(FavoriteService);
 
