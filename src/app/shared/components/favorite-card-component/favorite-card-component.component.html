@@ -4,21 +4,23 @@
       <mat-icon class="mt-1 scale-150">delete</mat-icon>
     </div>
     <div class="px-5 pt-1">
-      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-title>{{product?.nombreProducto}}</mat-card-title>
     </div>
   </mat-card-header>
-  <img
-    mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    alt="Photo of a Shiba Inu"
-  />
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
   <mat-card-content>
     <div class="flex flex-col space-y-5 py-5">
-      <span> Cuaderno Premium </span>
+      <div class="w-full text-center">
+        @if ((product?.cantidadStock ?? 0) > 0) {
+        <span class="font-bold bg-green-700 rounded-md px-3 py-1 text-white"> Aún disponible </span>
+        }@else {
+        <span class="font-bold bg-red-700 rounded-md px-3 py-1 text-white"> No hay productos disponibles </span>
+        }
+      </div>
 
-      <span> Papelería </span>
+      <span> {{product?.descripcion}} </span>
 
-      <span> $12.99 </span>
+      <span> {{product?.precio | currency}} </span>
     </div>
   </mat-card-content>
   <mat-card-actions>
