@@ -4,7 +4,7 @@
 <empty-component />
 }@else {
 <div class="flex flex-wrap justify-center items-center gap-10 mt-3">
-  @for (option of options(); track $index) {
+  @for (option of favoriteList(); track $index) {
   <shared-favorite-card-component [itemId]="$index" />
   }
 </div>
