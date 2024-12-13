@@ -1,9 +1,15 @@
 <!-- class="max-w-[400px]" -->
-<mat-card
-  appearance="outlined"
-  [routerLink]="['/dashboard/product/', product().id]"
-  class="hover:scale-105 hover:shadow-lg transition-transform duration-300 flex-grow"
->
+<mat-card appearance="outlined" [routerLink]="['/dashboard/product/', product().id]"
+  class="hover:scale-105 hover:shadow-lg transition-transform duration-300 flex-grow">
+  <button mat-icon-button color="accent" class="absolute top-2 right-2 z-10" (click)="toggleFavorite($event)">
+    <mat-icon>
+      {{ favoriteService.isProductInWishList(product().id)
+      ? 'favorite'
+      : 'favorite_border'
+      }}
+    </mat-icon>
+  </button>
+
   <mat-card-header>
     <mat-card-title>{{ product().nombreProducto }}</mat-card-title>
   </mat-card-header>
