@@ -5,16 +5,16 @@ import { environments } from '@env/environments';
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
-  private API_URL = environments.baseUrl;
+  private API_URL = `${environments.baseUrl}/Carrito`;
 
   private http = inject(HttpClient);
 
   getShoppingCartByUserId(id: number) {
-    return this.http.get(`${this.API_URL}/Carrito/details/${id}`);
+    return this.http.get(`${this.API_URL}/details/${id}`);
   }
 
   changeStateShoppingCart(id: number) {
-    return this.http.patch(`${this.API_URL}/Carrito/changeState`, {
+    return this.http.patch(`${this.API_URL}/changeState`, {
       carritoId: id,
     });
   }
