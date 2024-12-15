@@ -12,4 +12,10 @@ export class ShoppingCartService {
   getShoppingCartByUserId(id: number) {
     return this.http.get(`${this.API_URL}/Carrito/details/${id}`);
   }
+
+  changeStateShoppingCart(id: number) {
+    return this.http.patch(`${this.API_URL}/Carrito/changeState`, {
+      carritoId: id,
+    });
+  }
 }

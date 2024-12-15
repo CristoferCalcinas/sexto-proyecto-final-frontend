@@ -1,7 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TitleComponent } from '@shared/components/title-component/title-component.component';
 import { Router } from '@angular/router';
-import { catchError, map, of } from 'rxjs';
+import {
+  catchError,
+  EMPTY,
+  filter,
+  map,
+  mergeMap,
+  of,
+  retry,
+  tap,
+} from 'rxjs';
 
 import { AdminCartComponent } from './ui/admin-cart/admin-cart.component';
 import { CardItemComponent } from '@shared/components/card-item-component/card-item-component.component';
@@ -28,6 +37,7 @@ export default class ShoppingCartComponent implements OnInit {
   private shoppingCartService = inject(ShoppingCartService);
   private userService = inject(UserService);
   private productService = inject(ProductsService);
+  private shoppingCardId: number = 0;
 
   public isAdmin: boolean = false;
   public shoppingCartItems: any[] = [];
@@ -49,6 +59,7 @@ export default class ShoppingCartComponent implements OnInit {
 
         this.shoppingCartItems = data;
         this.detalles = data[0].detalleCarritos;
+        this.shoppingCardId = data[0].id;
       });
 
     this.userService
@@ -81,12 +92,31 @@ export default class ShoppingCartComponent implements OnInit {
       cantidad: detalle.cantidad,
       productoId: detalle.producto.id,
     }));
-    this.productService.discountProductQuantity(cantidades).subscribe((products) => {
-      // this.router.navigate(['/dashboard/payment']);
-      if(products) {
-        // marcar como completado el carrito de compras y redirigir al dashboard
-        this.router.navigate(['/dashboard']);
-      }
-    });
+
+    this.productService
+      .discountProductQuantity(cantidades)
+      .pipe(
+        // Solo continúa si se aplica correctamente el descuento
+        filter(Boolean),
+        // Combina con la actualización del carrito de compras
+        mergeMap(() =>
+          this.shoppingCartService
+            .changeStateShoppingCart(this.shoppingCardId)
+            .pipe(
+              retry(3) // Reintenta hasta 3 veces en caso de error
+            )
+        ),
+        // Maneja resultados y errores
+        tap((_resp) => {
+          console.warn(_resp);
+          this.router.navigate(['/dashboard']);
+        }),
+        catchError((error) => {
+          console.error('Transaction failed:', error);
+          // Puedes añadir aquí notificaciones para el usuario
+          return EMPTY; // Finaliza el flujo en caso de error crítico
+        })
+      )
+      .subscribe();
   }
 }
