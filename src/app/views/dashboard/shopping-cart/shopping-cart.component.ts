@@ -7,8 +7,9 @@ import { AdminCartComponent } from './ui/admin-cart/admin-cart.component';
 import { CardItemComponent } from '@shared/components/card-item-component/card-item-component.component';
 import { CardSummaryComponent } from '@shared/components/card-summary-component/card-summary-component.component';
 
-import { UserService } from '@services/user.service';
+import { ProductsService } from '@services/products.service';
 import { ShoppingCartService } from '@services/shopping-cart.service';
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -26,6 +27,7 @@ export default class ShoppingCartComponent implements OnInit {
   private router = inject(Router);
   private shoppingCartService = inject(ShoppingCartService);
   private userService = inject(UserService);
+  private productService = inject(ProductsService);
 
   public isAdmin: boolean = false;
   public shoppingCartItems: any[] = [];
@@ -73,14 +75,18 @@ export default class ShoppingCartComponent implements OnInit {
   }
 
   onProceedToPayment(confirm: boolean): void {
-    console.log(confirm);
     if (!confirm) return;
 
-    console.log(this.detalles);
     const cantidades = this.detalles.map((detalle) => ({
       cantidad: detalle.cantidad,
       productoId: detalle.producto.id,
     }));
-    console.log(cantidades);
+    this.productService.discountProductQuantity(cantidades).subscribe((products) => {
+      // this.router.navigate(['/dashboard/payment']);
+      if(products) {
+        // marcar como completado el carrito de compras y redirigir al dashboard
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
 }

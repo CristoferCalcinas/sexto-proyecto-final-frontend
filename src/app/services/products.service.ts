@@ -37,4 +37,14 @@ export class ProductsService {
   deleteProduct(id: string) {
     return this.http.delete<Product>(`${this.API_URL}/${id}`);
   }
+
+  discountProductQuantity(
+    productos: { cantidad: number; productoId: number }[]
+  ) {
+    console.log(productos);
+    return this.http.patch<Product[]>(
+      `${this.API_URL}/reduceToCart`,
+      productos
+    );
+  }
 }
