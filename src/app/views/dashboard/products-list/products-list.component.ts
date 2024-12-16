@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { catchError, firstValueFrom, of, switchMap } from 'rxjs';
+import { catchError, of, switchMap } from 'rxjs';
 
 import { TitleComponent } from '@shared/components/title-component/title-component.component';
 import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
@@ -10,7 +10,6 @@ import { ProductCardComponent } from '../../../controllers/product-card/product-
 import { CarritoService } from '@services/carrito.service';
 import { DetalleCarritoService } from '@services/detalle-carrito.service';
 import { ProductsService } from '@services/product.service';
-import { UserService } from '@services/user.service';
 
 import { Product } from '@models/product.interface';
 
@@ -26,9 +25,7 @@ export default class ProductsListComponent implements OnInit {
   private productsService = inject(ProductsService);
   private carritoService = inject(CarritoService);
   private detalleCarritoService = inject(DetalleCarritoService);
-  private userService = inject(UserService);
   public productsByCategory: { [key: string]: Product[] } = {};
-  public isAdmin: boolean = false;
 
   async ngOnInit(): Promise<void> {
     this.productsService.getAllProducts().subscribe((products) => {
@@ -45,8 +42,6 @@ export default class ProductsListComponent implements OnInit {
         return acc;
       }, {});
     });
-
-    this.isAdmin = !(await this.isNotAdmin());
   }
 
   addProductToCart(product: Product): void {
@@ -79,20 +74,5 @@ export default class ProductsListComponent implements OnInit {
 
   getCategories(): string[] {
     return Object.keys(this.productsByCategory);
-  }
-
-  async isNotAdmin(): Promise<boolean> {
-    try {
-      const userId = localStorage.getItem('userId');
-      if (!userId) return false;
-
-      const user = await firstValueFrom(
-        this.userService.getUserById(+userId)
-      );
-      return user.rol.nombreRol === 'Cliente';
-    } catch (error) {
-      console.error('Error checking admin status', error);
-      return false;
-    }
   }
 }
