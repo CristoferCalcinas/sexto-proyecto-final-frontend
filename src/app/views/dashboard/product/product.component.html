@@ -139,7 +139,7 @@
           </svg>
           <p class="ml-2 text-sm text-gray-500">
             {{
-              product?.cantidadStock > 0
+              (product?.cantidadStock ?? 0) > 0
                 ? "En stock - " +
                   product?.cantidadStock +
                   " unidades disponibles"
@@ -208,7 +208,7 @@
               type="button"
               class="flex w-full items-center justify-center rounded-md border border-transparent bg-cyan-600 px-8 py-3 text-base font-medium text-white hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-gray-50 disabled:bg-gray-300 disabled:cursor-not-allowed"
               (click)="addProductToCart()"
-              [disabled]="product?.cantidadStock <= 0"
+              [disabled]="(product?.cantidadStock ?? 0) <= 0"
             >
               Añadir al carrito
             </button>

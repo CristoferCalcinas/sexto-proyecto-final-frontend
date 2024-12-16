@@ -5,6 +5,8 @@ import { switchMap } from 'rxjs';
 
 import { ProductsService } from '@services/product.service';
 
+import { Product } from '@models/product.interface';
+
 @Component({
   selector: 'app-product',
   standalone: true,
@@ -13,7 +15,7 @@ import { ProductsService } from '@services/product.service';
   styles: ``,
 })
 export default class ProductComponent implements OnInit {
-  public product: any = null;
+  public product?: Product;
   public loading = true;
   private activatedRoute = inject(ActivatedRoute);
   private productsService = inject(ProductsService);
@@ -30,7 +32,7 @@ export default class ProductComponent implements OnInit {
 
         this.product = product;
         this.loading = false;
-        console.log(this.product);
+        // console.log(this.product);
         return;
       });
 
