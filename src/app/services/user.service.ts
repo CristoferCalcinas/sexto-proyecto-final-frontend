@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, of } from 'rxjs';
-import { User } from '@models/user.interface';
 
 import { environments } from '@env/environments';
+
+import { User } from '@models/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -27,8 +28,12 @@ export class UserService {
     });
   }
 
-  register(data: any) {
-    return this.http.post<any>(`${this.API_URL}/Cliente`, data);
+  register(userName: string, email: string, password: string) {
+    return this.http.post<User>(`${this.API_URL}/Usuario`, {
+      nombreUsuario: userName,
+      correoElectronico: email,
+      contrasena: password,
+    });
   }
 
   getUserByEmail(email: string) {

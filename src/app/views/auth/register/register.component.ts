@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { catchError, EMPTY, tap } from 'rxjs';
+import { catchError, EMPTY, switchMap, tap } from 'rxjs';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -55,30 +55,29 @@ export default class RegisterComponent {
       return;
 
     this.userService
-      .register({ nombreCliente, correoElectronico })
+      .register(nombreCliente, correoElectronico, contraseña)
       .pipe(
+        // Verificamos que la respuesta sea válida
         tap((resp) => {
-          if (!resp) return;
-
-          // Guardar información esencial en localStorage
+          if (!resp) {
+            throw new Error('Registro fallido: respuesta inválida');
+          }
+        }),
+        // Limpiamos y configuramos el localStorage
+        tap((resp) => {
+          localStorage.clear();
           localStorage.setItem('userId', resp.id.toString());
           localStorage.setItem('userEmail', resp.correoElectronico);
-
-          // Información sensible NO debe guardarse en localStorage
-          console.log('Registro exitoso');
         }),
+        // Redirigimos al usuario tras registro exitoso
+        switchMap(() => this.router.navigate(['/dashboard/products-list'])),
+        // Manejamos errores globalmente
         catchError((error) => {
-          // Manejo de errores en el registro
-          console.error('Error en el registro', error);
-          return EMPTY;
+          console.error('Error en el registro o redirección:', error);
+          return EMPTY; // Finalizamos el flujo
         })
       )
-      .subscribe({
-        next: () => {
-          // Navegación tras registro exitoso
-          this.router.navigate(['/dashboard/products-list']);
-        },
-      });
+      .subscribe();
   }
 
   public hasError(controlName: string, errorName: string): boolean {
