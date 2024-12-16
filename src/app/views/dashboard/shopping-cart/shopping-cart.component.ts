@@ -5,20 +5,16 @@ import {
   catchError,
   EMPTY,
   filter,
-  map,
   mergeMap,
-  of,
   retry,
   tap,
 } from 'rxjs';
 
-import { AdminCartComponent } from './ui/admin-cart/admin-cart.component';
 import { CardItemComponent } from '@shared/components/card-item-component/card-item-component.component';
 import { CardSummaryComponent } from '@shared/components/card-summary-component/card-summary-component.component';
 
 import { ProductsService } from '@services/product.service';
 import { ShoppingCartService } from '@services/shopping-cart.service';
-import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -27,7 +23,6 @@ import { UserService } from '@services/user.service';
     TitleComponent,
     CardItemComponent,
     CardSummaryComponent,
-    AdminCartComponent,
   ],
   templateUrl: './shopping-cart.component.html',
   styles: ``,
@@ -35,11 +30,9 @@ import { UserService } from '@services/user.service';
 export default class ShoppingCartComponent implements OnInit {
   private router = inject(Router);
   private shoppingCartService = inject(ShoppingCartService);
-  private userService = inject(UserService);
   private productService = inject(ProductsService);
   private shoppingCardId: number = 0;
 
-  public isAdmin: boolean = false;
   public shoppingCartItems: any[] = [];
 
   public detalles: any[] = [];
@@ -60,18 +53,6 @@ export default class ShoppingCartComponent implements OnInit {
         this.shoppingCartItems = data;
         this.detalles = data[0].detalleCarritos;
         this.shoppingCardId = data[0].id;
-      });
-
-    this.userService
-      .getUserById(+userId)
-      .pipe(
-        // Transformar la respuesta para obtener el valor booleano
-        map((user) => user.rol.nombreRol),
-        // Manejar errores y devolver `false` directamente si ocurre uno
-        catchError(() => of(false))
-      )
-      .subscribe((isAdmin) => {
-        this.isAdmin = !(isAdmin === 'Cliente');
       });
   }
 

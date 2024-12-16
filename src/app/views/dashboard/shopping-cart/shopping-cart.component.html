@@ -1,17 +1,8 @@
 <shared-title-component title="Carrito de compras" />
 
-@if (isAdmin) {
-
-<ui-admin-cart></ui-admin-cart>
-
-}@else {
-
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
   @for (detalle of detalles; track $index) {
-  <shared-card-item-component
-    (itemDeleted)="removeItem($event)"
-    [detalle]="detalle"
-  />
+  <shared-card-item-component (itemDeleted)="removeItem($event)" [detalle]="detalle" />
   }@empty {
   <div class="text-center">
     <p>No hay productos en el carrito</p>
@@ -20,10 +11,5 @@
 </div>
 
 <div class="my-5">
-  <shared-card-summary-component
-    (proceedToPayment)="onProceedToPayment($event)"
-    [total]="calcularTotal"
-  />
+  <shared-card-summary-component (proceedToPayment)="onProceedToPayment($event)" [total]="calcularTotal" />
 </div>
-
-}
