@@ -4,12 +4,12 @@
   puedes tener el producto que deseas en la puerta de tu casa. ¡No esperes más y
   adquiere tus productos favoritos!
 </marquee>
-<div class="bg-white rounded-md my-4 opacity-95">
+<div class="bg-gray-700 rounded-md my-4 opacity-95">
   <div class="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
     <!-- Product details -->
-    <div class="lg:max-w-lg lg:self-end">
+    <div class="lg:max-w-lg lg:self-center">
       <div>
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+        <h1 class="text-3xl font-bold tracking-tight text-gray-100 sm:text-5xl"
           [ngClass]="{ 'bg-gray-300 h-10 rounded-md animate-pulse': loading }">
           {{ product?.nombreProducto }}
         </h1>
@@ -19,7 +19,7 @@
         <h2 id="information-heading" class="sr-only">Product information</h2>
 
         <div class="flex items-center" [ngClass]="{ 'bg-gray-300 h-7 rounded-md animate-pulse': loading }">
-          <p class="text-lg text-gray-900 sm:text-xl">
+          <p class="text-lg text-gray-100 sm:text-xl">
             {{ product?.precio | currency : "USD" : "symbol" : "1.2-2" }}
           </p>
 
@@ -62,13 +62,13 @@
                 </div>
                 <p class="sr-only">4 out of 5 stars</p>
               </div>
-              <p class="ml-2 text-sm text-gray-500">1624 reviews</p>
+              <p class="ml-2 text-sm text-gray-300">1624 reviews</p>
             </div>
           </div>
         </div>
 
         <div class="mt-4 space-y-6" [ngClass]="{ 'bg-gray-300 h-7 rounded-md animate-pulse': loading }">
-          <p class="text-base text-gray-500">
+          <p class="text-base text-gray-2 00">
             {{ product?.descripcion }}
           </p>
         </div>
@@ -80,7 +80,7 @@
               d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
               clip-rule="evenodd" />
           </svg>
-          <p class="ml-2 text-sm text-gray-500">
+          <p class="ml-2 text-sm text-gray-300">
             {{
             (product?.cantidadStock ?? 0) > 0
             ? "En stock - " +
@@ -108,26 +108,26 @@
         <h2 id="options-heading" class="sr-only">Product options</h2>
 
         <div>
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-4">
             <div class="sm:pr-9">
-              <span class="block text-md font-medium text-gray-700">
+              <span class="block text-md font-medium text-gray-100">
                 Cantidad
               </span>
             </div>
             <div class="w-full flex flex-col">
               <input type="range" min="1" max="5" [formControl]="quantity"
-                class="w-full bg-gray-200 rounded-full h-2 appearance-none cursor-pointer" />
+                class="w-full bg-gray-300 rounded-full h-2 appearance-none cursor-pointer" />
               <div class="w-full flex justify-between px-1 mt-1">
-                <span class="text-xs text-gray-500">1</span>
-                <span class="text-xs text-gray-500">2</span>
-                <span class="text-xs text-gray-500">3</span>
-                <span class="text-xs text-gray-500">4</span>
-                <span class="text-xs text-gray-500">5</span>
+                <span class="text-xs text-gray-100">1</span>
+                <span class="text-xs text-gray-100">2</span>
+                <span class="text-xs text-gray-100">3</span>
+                <span class="text-xs text-gray-100">4</span>
+                <span class="text-xs text-gray-100">5</span>
               </div>
             </div>
           </div>
 
-          <div class="mt-4 text-black italic px-3 text-sm"
+          <div class="mt-4 text-white italic px-3 text-sm"
             [ngClass]="{ 'bg-gray-300 h-6 rounded-md animate-pulse': loading }">
             <span> Fecha del producto: </span>
             <span>
