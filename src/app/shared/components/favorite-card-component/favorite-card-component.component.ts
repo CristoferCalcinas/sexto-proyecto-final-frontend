@@ -10,7 +10,7 @@ import { MatIcon } from '@angular/material/icon';
 import { CarritoService } from '@services/carrito.service';
 import { DetalleCarritoService } from '@services/detalle-carrito.service';
 import { FavoriteService } from '@services/favorite.service';
-import { ProductsService } from '@services/products.service';
+import { ProductsService } from '@services/product.service';
 
 import type { Product } from '@models/product.interface';
 

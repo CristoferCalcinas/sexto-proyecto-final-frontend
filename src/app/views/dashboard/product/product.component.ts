@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 
-import { ProductsService } from '@services/products.service';
+import { ProductsService } from '@services/product.service';
 
 @Component({
   selector: 'app-product',

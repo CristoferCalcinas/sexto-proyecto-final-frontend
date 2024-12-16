@@ -9,7 +9,7 @@ import { ProductCardComponent } from '../../../controllers/product-card/product-
 
 import { CarritoService } from '@services/carrito.service';
 import { DetalleCarritoService } from '@services/detalle-carrito.service';
-import { ProductsService } from '@services/products.service';
+import { ProductsService } from '@services/product.service';
 import { UserService } from '@services/user.service';
 
 import { Product } from '@models/product.interface';

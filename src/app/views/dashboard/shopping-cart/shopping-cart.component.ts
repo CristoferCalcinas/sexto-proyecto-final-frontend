@@ -16,7 +16,7 @@ import { AdminCartComponent } from './ui/admin-cart/admin-cart.component';
 import { CardItemComponent } from '@shared/components/card-item-component/card-item-component.component';
 import { CardSummaryComponent } from '@shared/components/card-summary-component/card-summary-component.component';
 
-import { ProductsService } from '@services/products.service';
+import { ProductsService } from '@services/product.service';
 import { ShoppingCartService } from '@services/shopping-cart.service';
 import { UserService } from '@services/user.service';
 

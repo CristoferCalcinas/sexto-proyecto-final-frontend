@@ -16,7 +16,7 @@ import {
 import { TitleComponent } from '@shared/components/title-component/title-component.component';
 import { ProductCardComponent } from '../../../controllers/product-card/product-card.component';
 
-import { ProductsService } from '@services/products.service';
+import { ProductsService } from '@services/product.service';
 
 @Component({
   selector: 'app-search',
