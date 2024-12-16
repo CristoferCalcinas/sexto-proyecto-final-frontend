@@ -13,13 +13,16 @@ export class UserService {
 
   getAllUsers() {
     return this.http
-      .get<any>(`${this.API_URL}`)
+      .get<User[]>(`${this.API_URL}`)
       .pipe(catchError(() => of([])));
   }
 
   login(email: string, password: string) {
     // console.log(password);
-    return this.http.post<any>(`${this.API_URL}/login`, {
+    return this.http.post<{
+      message: string;
+      usuario: User;
+    }>(`${this.API_URL}/login`, {
       correoElectronico: email,
       password: password,
     });
