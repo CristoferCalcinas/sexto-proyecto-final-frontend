@@ -1,25 +1,33 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { catchError, of, switchMap } from 'rxjs';
 
 import { ProductsService } from '@services/product.service';
 
 import { Product } from '@models/product.interface';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CarritoService } from '@services/carrito.service';
+import { DetalleCarritoService } from '@services/detalle-carrito.service';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './product.component.html',
   styles: ``,
 })
 export default class ProductComponent implements OnInit {
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
+  private carritoService = inject(CarritoService);
+  private productsService = inject(ProductsService);
+  private detalleCarritoService = inject(DetalleCarritoService);
+
   public product?: Product;
   public loading = true;
-  private activatedRoute = inject(ActivatedRoute);
-  private productsService = inject(ProductsService);
-  private router = inject(Router);
+  public quantity = this.fb.control(1, [Validators.min(1), Validators.max(5)]);
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -41,7 +49,33 @@ export default class ProductComponent implements OnInit {
 
   addProductToCart() {
     if (!this.product) return;
-    console.log('Product added to cart');
-    console.log(this.product);
+
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+
+    this.carritoService
+      .getCarritoByUserId(+userId)
+      .pipe(
+        switchMap((carrito) =>
+          this.detalleCarritoService.createDetalleCarrito(
+            carrito.id,
+            this.product!.id,
+            this.product!.precio,
+            this.quantity.value ? this.quantity.value : 1
+          )
+        ),
+        catchError((error) => {
+          console.error('Error al agregar producto al carrito', error);
+          return of(null);
+        })
+      )
+      .subscribe((resp) => {
+        console.log(resp);
+        this.router.navigate(['dashboard/shopping-cart']);
+      });
   }
 }
