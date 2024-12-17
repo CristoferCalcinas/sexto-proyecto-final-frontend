@@ -33,10 +33,13 @@ export default class PurchaseHistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const userId = localStorage.getItem('userId');
+
+    if(!userId) return;
+
     this.purchaseService
-      .getPurchaseHistoryByUserId('4')
+      .getPurchaseHistoryByUserId(userId)
       .subscribe((purchase) => {
-        console.log(purchase);
         if (!purchase.detalleCompras) return;
 
         const products: HistorySummary[] = purchase.detalleCompras.map(
