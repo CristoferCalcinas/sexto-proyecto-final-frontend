@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+
 import { MatTableModule } from '@angular/material/table';
 import { TitleComponent } from '@shared/components/title-component/title-component.component';
 
-export interface Transaction {
-  item: string;
-  cost: number;
+import { PurchaseService } from '@services/purchase.service';
+
+interface HistorySummary {
+  productName: string;
+  quantity: number;
+  unitPrice: number;
 }
 
 @Component({
@@ -15,20 +19,37 @@ export interface Transaction {
   templateUrl: './purchase-history.component.html',
   styles: ``,
 })
-export default class PurchaseHistoryComponent {
-  displayedColumns = ['item', 'cost'];
-  transactions: Transaction[] = [
-    { item: 'Beach ball', cost: 4 },
-    { item: 'Towel', cost: 5 },
-    { item: 'Frisbee', cost: 2 },
-    { item: 'Sunscreen', cost: 4 },
-    { item: 'Cooler', cost: 25 },
-    { item: 'Swim suit', cost: 15 },
-  ];
+export default class PurchaseHistoryComponent implements OnInit {
+  private purchaseService = inject(PurchaseService);
+
+  public displayedColumns: string[] = ['productName', 'quantity', 'unitPrice'];
+  public purchaseHistory = signal<HistorySummary[]>([]);
 
   getTotalCost() {
-    return this.transactions
-      .map((t) => t.cost)
-      .reduce((acc, value) => acc + value, 0);
+    return this.purchaseHistory().reduce(
+      (acc, value) => acc + value.quantity * value.unitPrice,
+      0
+    );
+  }
+
+  ngOnInit(): void {
+    this.purchaseService
+      .getPurchaseHistoryByUserId('4')
+      .subscribe((purchase) => {
+        console.log(purchase);
+        if (!purchase.detalleCompras) return;
+
+        const products: HistorySummary[] = purchase.detalleCompras.map(
+          (detalle) => {
+            return {
+              productName: detalle.producto.nombreProducto,
+              quantity: detalle.cantidad,
+              unitPrice: detalle.producto.precio,
+            };
+          }
+        );
+
+        this.purchaseHistory.set(products);
+      });
   }
 }

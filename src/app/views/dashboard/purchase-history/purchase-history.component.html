@@ -1,20 +1,28 @@
 <shared-title-component title="Historial de Compras" />
 
+<div class="bg-gray-300 p-2">
 
 <section class="mat-elevation-z8" tabindex="0">
-  <table mat-table [dataSource]="transactions">
-    <!-- Item Column -->
-    <ng-container matColumnDef="item">
-      <th mat-header-cell *matHeaderCellDef>Item</th>
-      <td mat-cell *matCellDef="let transaction">{{ transaction.item }}</td>
+  <table mat-table [dataSource]="purchaseHistory()">
+    <!-- Product Name Column -->
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef>Nombre del Producto</th>
+      <td mat-cell *matCellDef="let product">{{ product.productName }}</td>
       <td mat-footer-cell *matFooterCellDef>Total</td>
     </ng-container>
 
+    <!-- Product Quantity Column -->
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Cantidad adquirida</th>
+      <td mat-cell *matCellDef="let product">{{ product.quantity }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
     <!-- Cost Column -->
-    <ng-container matColumnDef="cost">
-      <th mat-header-cell *matHeaderCellDef>Cost</th>
-      <td mat-cell *matCellDef="let transaction">
-        {{ transaction.cost | currency }}
+    <ng-container matColumnDef="unitPrice">
+      <th mat-header-cell *matHeaderCellDef>Costo total del producto</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.unitPrice | currency }}
       </td>
       <td mat-footer-cell *matFooterCellDef>{{ getTotalCost() | currency }}</td>
     </ng-container>
@@ -24,3 +32,4 @@
     <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
   </table>
 </section>
+</div>
