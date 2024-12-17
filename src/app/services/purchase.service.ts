@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 import { environments } from '@env/environments';
 import type { Purchase } from '@models/purchase.interface';
@@ -16,6 +16,8 @@ export class PurchaseService {
   // }
 
   getPurchaseHistoryByUserId(userId: string): Observable<Purchase> {
-    return this.http.get<Purchase>(`${this.API_URL}/purchases/user?userId=${userId}`);
+    return this.http
+      .get<Purchase>(`${this.API_URL}/purchases/user?userId=${userId}`)
+      .pipe(catchError(() => of({} as Purchase)));
   }
 }
