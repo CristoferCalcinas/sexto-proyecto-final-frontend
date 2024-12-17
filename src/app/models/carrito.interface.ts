@@ -1,10 +1,13 @@
+import { Product } from "./product.interface";
+import { User } from "./user.interface";
+
 export interface ShoppingCard {
   id:              number;
   usuarioId:       number;
   fechaCreacion:   Date;
   estadoCarrito:   string;
-  detalleCarritos: any[];
-  usuario:         null;
+  detalleCarritos: ShoppingCardDetail[];
+  usuario:         User;
 }
 
 export interface ShoppingCardDetail {
@@ -14,5 +17,5 @@ export interface ShoppingCardDetail {
   cantidad:       number;
   precioUnitario: number;
   carrito:        ShoppingCard;
-  producto:       null;
+  producto:       Product;
 }
