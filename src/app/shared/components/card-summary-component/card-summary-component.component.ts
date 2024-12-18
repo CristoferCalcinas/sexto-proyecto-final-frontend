@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
   styles: ``,
 })
 export class CardSummaryComponent {
-  public total: any = input.required();
+  public total = input.required<number>({ alias: 'total' });
   public proceedToPayment = output<boolean>();
 
   onProceedToPayment() {
