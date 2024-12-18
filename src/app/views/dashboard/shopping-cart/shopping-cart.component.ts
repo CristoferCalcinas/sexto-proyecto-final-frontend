@@ -96,7 +96,7 @@ export default class ShoppingCartComponent implements OnInit {
         ),
         // Maneja resultados y errores
         tap((_resp) => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/purchase-history']);
         }),
         catchError((error) => {
           console.error('Transaction failed:', error);
