@@ -6,17 +6,11 @@
     </span>
   </div>
 
-  <div
-    class="flex flex-col space-y-5 md:flex-row-reverse md:space-y-0 md:gap-2"
-  >
-    <button mat-flat-button class="w-full" (click)="onProceedToPayment()">
+  <div class="flex flex-col space-y-5 md:flex-row-reverse md:space-y-0 md:gap-2">
+    <button mat-flat-button class="w-full" [disabled]="total() === 0" (click)="onProceedToPayment()">
       <span class="text-xl font-bold italic"> Proceder al pago </span>
     </button>
-    <button
-      mat-stroked-button
-      class="w-full"
-      [routerLink]="['/dashboard/products-list']"
-    >
+    <button mat-stroked-button class="w-full" [routerLink]="['/dashboard/products-list']">
       <span class="text-lg tracking-tighter"> Seguir comprando </span>
     </button>
   </div>
