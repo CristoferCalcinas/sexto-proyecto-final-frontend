@@ -39,12 +39,9 @@ export class ProductsService {
   }
 
   discountProductQuantity(
-    productos: { cantidad: number; productoId: number }[]
+    productos: { cantidad: number; productoId: number }[],
+    usuarioId: string
   ) {
-    console.log(productos);
-    return this.http.patch<Product[]>(
-      `${this.API_URL}/reduceToCart`,
-      productos
-    );
+    return this.http.patch<Product[]>(`${this.API_URL}/reduceToCart?usuarioId=${usuarioId}`,productos);
   }
 }

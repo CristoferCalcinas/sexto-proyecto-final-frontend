@@ -74,8 +74,15 @@ export default class ShoppingCartComponent implements OnInit {
       productoId: detalle.producto.id,
     }));
 
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      this.router.navigate(['/auth/login']);
+      return;
+    }
+
     this.productService
-      .discountProductQuantity(cantidades)
+      .discountProductQuantity(cantidades, userId)
       .pipe(
         // Solo continúa si se aplica correctamente el descuento
         filter(Boolean),
@@ -89,7 +96,6 @@ export default class ShoppingCartComponent implements OnInit {
         ),
         // Maneja resultados y errores
         tap((_resp) => {
-          console.warn(_resp);
           this.router.navigate(['/dashboard']);
         }),
         catchError((error) => {
