@@ -4,7 +4,7 @@
   @for (detalle of detalles; track $index) {
   <shared-card-item-component (itemDeleted)="removeItem($event)" [detalle]="detalle" />
   }@empty {
-  <div class="text-center">
+  <div class="text-center col-span-full">
     <p>No hay productos en el carrito</p>
   </div>
   }
