@@ -15,9 +15,9 @@ export class PurchaseService {
   //   return this.http.get<Purchase[]>(`${this.API_URL}/purchases/history`);
   // }
 
-  getPurchaseHistoryByUserId(userId: string): Observable<Purchase> {
+  getPurchaseHistoryByUserId(userId: string): Observable<Purchase[]> {
     return this.http
-      .get<Purchase>(`${this.API_URL}/purchases/user?userId=${userId}`)
-      .pipe(catchError(() => of({} as Purchase)));
+      .get<Purchase[]>(`${this.API_URL}/purchases/user?userId=${userId}`)
+      .pipe(catchError(() => of([] as Purchase[])));
   }
 }
